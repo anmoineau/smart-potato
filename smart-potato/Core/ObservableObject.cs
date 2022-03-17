@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace smart_potato.Core
+namespace SmartPotato.Core
 {
     internal class ObservableObject : INotifyPropertyChanged
     {

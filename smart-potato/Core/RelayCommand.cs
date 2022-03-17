@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace smart_potato.Core
+namespace SmartPotato.Core
 {
     internal class RelayCommand : ICommand
     {
