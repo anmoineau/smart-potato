@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace smart_potato.Core
 {
-    public class ObservableObject : INotifyPropertyChanged
+    internal class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -28,13 +28,13 @@ namespace smart_potato.Core
         }
     }
 
-    public class NotificationPushedEventArgs : EventArgs
+    internal class NotificationPushedEventArgs : EventArgs
     {
         public string Message { get; set; } = "";
         public NotificationLevel Level { get; set; }
     }
 
-    public enum NotificationLevel
+    internal enum NotificationLevel
     {
         ERROR,
         WARNING,
