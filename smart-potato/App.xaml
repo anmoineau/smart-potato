@@ -1,9 +1,14 @@
 ﻿<Application x:Class="smart_potato.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:smart_potato"
+             xmlns:viewModel="clr-namespace:smart_potato.MVVM.ViewModel"
+             xmlns:view="clr-namespace:smart_potato.MVVM.View"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+                <view:MainWindow/>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
