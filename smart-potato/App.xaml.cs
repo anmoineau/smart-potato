@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace smart_potato
+namespace SmartPotato
 {
     /// <summary>
     /// Interaction logic for App.xaml
