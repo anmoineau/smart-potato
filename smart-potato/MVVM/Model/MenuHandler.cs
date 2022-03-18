@@ -9,6 +9,10 @@ namespace SmartPotato.MVVM.Model
 {
     internal static class MenuHandler
     {
+        /**** Constants ****/
+
+        public static uint MENU_SIZE { get; } = 7;
+
         /**** Properties ****/
 
         private static List<Recipe> recipeBook = new();
@@ -46,12 +50,33 @@ namespace SmartPotato.MVVM.Model
             foreach (var recipe in RecipeBook)
             {
                 if (recipesDone.Exists(r => r.UID == recipe.UID))
-                    break;
-                if (menu.Exists(m => m.Recipe.UID == recipe.UID))
-                    break;
+                    continue;
+                if (Menu.Exists(m => m.Recipe.UID == recipe.UID))
+                    continue;
                 if (!recipe.IsSeasonal())
-                    break;
+                    continue;
                 recipesTodo.Add(recipe);
+            }
+        }
+
+        public static void ComputeMenu()
+        {
+            // Add one monthly recipe if available.
+            var monthlies = recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.MONTHLY);
+            if(monthlies.Count > 0 && Menu.Count < MENU_SIZE)
+                Menu.Add(new Meal(monthlies.First()));
+            // Add one biweekly recipe if available.
+            var biweeklies = recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);
+            if(biweeklies.Count > 0 && Menu.Count < MENU_SIZE)
+                Menu.Add(new Meal(biweeklies.First()));
+            // Fill the rest with available weekly recipes.
+            var weeklies = new Queue<Recipe> (recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
+            while (Menu.Count < MENU_SIZE)
+            {
+                if (weeklies.Count > 0)
+                    Menu.Add(new Meal(weeklies.Dequeue()));
+                else
+                    break;
             }
         }
 
@@ -73,6 +98,17 @@ namespace SmartPotato.MVVM.Model
             foreach (var recipe in RecipesTodo)
             {
                 format += recipe.ToString() + "\n";
+            }
+            return format;
+        }
+
+        public static string PrintMenu()
+        {
+            string format = "";
+            format += "Menu :\n\n";
+            foreach (var meal in Menu)
+            {
+                format += meal.ToString() + "\n";
             }
             return format;
         }
