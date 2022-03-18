@@ -38,6 +38,13 @@ namespace SmartPotato.MVVM.Model
             set { instructions = value; }
         }
 
+        private Frequencies frequency;
+        public Frequencies Frequency
+        {
+            get { return frequency; }
+            set { frequency = value; }
+        }
+
         private ExpiryIndexes expiryIndex;
         public ExpiryIndexes ExpiryIndex
         {
@@ -63,27 +70,35 @@ namespace SmartPotato.MVVM.Model
 
         public override string ToString()
         {
-            string format = "Recipe \t\t\t: {0} \nName \t\t\t: {1} \nIngredients \t: {2} \nInstructions \t: {3} \nExpiryIndex \t: {4} \nSeason \t\t\t: {5} \nLastMade \t\t: {6}";
-            return string.Format(format, UID, Name, ingredients, Instructions, ExpiryIndex, Season, LastMade);
+            string format = "Recipe \t\t\t: {0} \nName \t\t\t: {1} \nIngredients \t: {2} \nInstructions \t: {3} \nFrequency \t\t: {4} \nExpiryIndex \t: {5} \nSeason \t\t\t: {6} \nLastMade \t\t: {7}\n";
+            return string.Format(format, UID, Name, ingredients, Instructions, Frequency, ExpiryIndex, Season, LastMade);
         }
 
-    }
+        /**** Enums ****/
 
-    internal enum ExpiryIndexes : short
-    {
-        LOW = 0,
-        NORMAL = 1,
-        CRITICAL = 2
-    }
+        internal enum Frequencies : short
+        {
+            WEEKLY   = 0,
+            BIWEEKLY = 1,
+            MONTHLY  = 2
+        }
 
-    [Flags]
-    internal enum Seasons : short
-    {
-        NONE   = 0,
-        WINTER = 1,
-        SPRING = 2,
-        SUMMER = 4,
-        FALL   = 8,
-        ANY    = 15,
+        internal enum ExpiryIndexes : short
+        {
+            LOW      = 0,
+            NORMAL   = 1,
+            CRITICAL = 2
+        }
+
+        [Flags]
+        internal enum Seasons : short
+        {
+            NONE   = 0,
+            WINTER = 1,
+            SPRING = 2,
+            SUMMER = 4,
+            FALL   = 8,
+            ANY    = 15,
+        }
     }
 }
