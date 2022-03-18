@@ -15,10 +15,10 @@ namespace SmartPotato.MVVM.ViewModel
             try
             {
                 List<Recipe> recipes = RecipeBookParser.ReadRecipeBook();
-                foreach (var _recipe in recipes)
-                {
-                    Debug.WriteLine(_recipe.ToString());
-                }
+                Meal meal = new(recipes[0]);
+                meal.IsDone = true;
+                meal.ArchiveMeal();
+                RecipeBookParser.UpdateRecipeBook(recipes);
             }
             catch (Exception ex)
             {

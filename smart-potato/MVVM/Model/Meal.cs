@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SmartPotato.MVVM.Model
+{
+    internal class Meal
+    {
+        /**** Properties ****/
+
+        private Recipe recipe = new();
+        public Recipe Recipe
+        {
+            get { return recipe; }
+            set { recipe = value; }
+        }
+
+        private bool isDone;
+        public bool IsDone
+        {
+            get { return isDone; }
+            set {
+                isDone = value;
+                if(isDone)
+                    DoneDate = DateTime.Now;
+            }
+        }
+
+        private DateTime doneDate;
+        public DateTime DoneDate
+        {
+            get { return doneDate; }
+            set { doneDate = value; }
+        }
+
+        /**** Constructors ****/
+
+        public Meal(Recipe recipe)
+        {
+            this.recipe = recipe;
+        }
+
+        /**** Methods ****/
+
+        public void ArchiveMeal()
+        {
+            recipe.LastMade = doneDate;
+        }
+    }
+}
