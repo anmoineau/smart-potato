@@ -12,18 +12,18 @@ namespace SmartPotato.MVVM.ViewModel
     {
         public MainViewModel()
         {
-            Recipe recipe = new(1)
+            try
             {
-                Name = "Smart potatoes",
-                Ingredients = "Potatoes",
-                Instructions = "Boil them.",
-                ExpiryIndex = ExpiryIndexes.NORMAL,
-                Season = Seasons.ANY,
-                LastMade = DateTime.Now
-            };
-            Seasons HotSeasons = Seasons.SUMMER | Seasons.SPRING;
-            Debug.WriteLine(recipe.ToString());
-            Debug.WriteLine(recipe.Season.HasFlag(HotSeasons));
+                List<Recipe> recipes = RecipeBookParser.ReadRecipeBook();
+                foreach (var _recipe in recipes)
+                {
+                    Debug.WriteLine(_recipe.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

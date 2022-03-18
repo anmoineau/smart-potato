@@ -59,18 +59,11 @@ namespace SmartPotato.MVVM.Model
             set { lastMade = value; }
         }
 
-        /**** Constructors ****/
-
-        public Recipe(uint _UID)
-        {
-            UID = _UID;
-        }
-
         /**** Methods ****/
 
         public override string ToString()
         {
-            string format = "Recipe \t\t\t: {0} \nName \t\t\t: {1} \nIngredients \t: {2} \nInstructions \t: {3} \nExpiryIndex \t: {4} \nSeason \t\t\t: {5} \nLastMade \t\t: {6} \n";
+            string format = "Recipe \t\t\t: {0} \nName \t\t\t: {1} \nIngredients \t: {2} \nInstructions \t: {3} \nExpiryIndex \t: {4} \nSeason \t\t\t: {5} \nLastMade \t\t: {6}";
             return string.Format(format, UID, Name, ingredients, Instructions, ExpiryIndex, Season, LastMade);
         }
 
