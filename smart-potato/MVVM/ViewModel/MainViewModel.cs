@@ -14,11 +14,9 @@ namespace SmartPotato.MVVM.ViewModel
         {
             try
             {
-                List<Recipe> recipes = RecipeBookParser.ReadRecipeBook();
-                Meal meal = new(recipes[0]);
-                meal.IsDone = true;
-                meal.ArchiveMeal();
-                RecipeBookParser.UpdateRecipeBook(recipes);
+                MenuHandler.RecipeBook = RecipeBookParser.ReadRecipeBook();
+                Debug.WriteLine(MenuHandler.PrintRecipeBook());
+                RecipeBookParser.UpdateRecipeBook(MenuHandler.RecipeBook);
             }
             catch (Exception ex)
             {
