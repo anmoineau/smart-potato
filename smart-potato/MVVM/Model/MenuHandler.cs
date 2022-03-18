@@ -41,11 +41,36 @@ namespace SmartPotato.MVVM.Model
 
         /**** Methods ****/
 
+        public static void ComputeRecipesTodo()
+        {
+            foreach (var recipe in RecipeBook)
+            {
+                if (recipesDone.Exists(r => r.UID == recipe.UID))
+                    break;
+                if (menu.Exists(m => m.Recipe.UID == recipe.UID))
+                    break;
+                if (!recipe.IsSeasonal())
+                    break;
+                recipesTodo.Add(recipe);
+            }
+        }
+
         public static string PrintRecipeBook()
         {
             string format = "";
             format += "Recipe Book :\n\n";
             foreach (var recipe in RecipeBook)
+            {
+                format += recipe.ToString() + "\n";
+            }
+            return format;
+        }
+
+        public static string PrintRecipesTodo()
+        {
+            string format = "";
+            format += "Recipes To Do :\n\n";
+            foreach (var recipe in RecipesTodo)
             {
                 format += recipe.ToString() + "\n";
             }

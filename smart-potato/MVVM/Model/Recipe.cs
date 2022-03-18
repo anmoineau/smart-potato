@@ -68,6 +68,20 @@ namespace SmartPotato.MVVM.Model
 
         /**** Methods ****/
 
+        public bool IsSeasonal()
+        {
+            return Season.HasFlag(GetSeason(DateTime.Now));
+        }
+
+        private static Seasons GetSeason(DateTime date)
+        {
+            float value = (float)date.Month + date.Day / 100f;
+            if (value < 3.21 || value >= 12.22) return Seasons.WINTER;
+            if (value < 6.21) return Seasons.SPRING;
+            if (value < 9.23) return Seasons.SUMMER;
+            return Seasons.FALL;
+        }
+
         public override string ToString()
         {
             string format = "Recipe \t\t\t: {0} \nName \t\t\t: {1} \nIngredients \t: {2} \nInstructions \t: {3} \nFrequency \t\t: {4} \nExpiryIndex \t: {5} \nSeason \t\t\t: {6} \nLastMade \t\t: {7}\n";
