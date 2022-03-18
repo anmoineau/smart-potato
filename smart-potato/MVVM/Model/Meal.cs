@@ -48,5 +48,10 @@ namespace SmartPotato.MVVM.Model
         {
             recipe.LastMade = doneDate;
         }
+
+        public override string ToString()
+        {
+            return recipe.ToString() + "Done \t\t\t: " + IsDone + "\nDoneDate \t\t: " + DoneDate + "\n";
+        }
     }
 }
