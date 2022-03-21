@@ -15,6 +15,8 @@ namespace SmartPotato.MVVM.ViewModel
             try
             {
                 MenuHandler.RenewMenu();
+                TimeProvider.CurrentTime = TimeProvider.CurrentTime.AddDays(7);
+
                 Debug.WriteLine(MenuHandler.PrintRecipesTodo());
                 MenuHandler.ComputeMenu();
                 for(int i = 0; i < 4; i++)

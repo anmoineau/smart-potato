@@ -24,7 +24,7 @@ namespace SmartPotato.MVVM.Model
             set {
                 isDone = value;
                 if(isDone)
-                    DoneDate = DateTime.Now;
+                    DoneDate = TimeProvider.CurrentTime;
             }
         }
 
