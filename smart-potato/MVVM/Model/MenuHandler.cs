@@ -15,7 +15,7 @@ namespace SmartPotato.MVVM.Model
 
         /**** Properties ****/
 
-        private static List<Recipe> recipeBook = new();
+        private static List<Recipe> recipeBook = RecipeBookParser.ReadRecipeBook();
         public static List<Recipe> RecipeBook
         {
             get { return recipeBook; }
@@ -36,7 +36,7 @@ namespace SmartPotato.MVVM.Model
             set { recipesDone = value; }
         }
 
-        private static List<Meal> menu = new();
+        private static List<Meal> menu = OutputHandler.GetMenu(RecipeBook);
         public static List<Meal> Menu
         {
             get { return menu; }
