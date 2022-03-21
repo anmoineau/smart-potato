@@ -61,17 +61,20 @@ namespace SmartPotato.MVVM.Model
 
         public static void ComputeMenu()
         {
+            if (Menu.Count >= MENU_SIZE)
+                return;
             // Add one monthly recipe if available.
-            var monthlies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.MONTHLY);
+            var monthlies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.MONTHLY);        // TODO : check last made
             if(monthlies.Count > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(monthlies.First()));
             // Add one biweekly recipe if available.
-            var biweeklies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);
-            if(biweeklies.Count > 0 && Menu.Count < MENU_SIZE)
+            var biweeklies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);      // TODO : check last made
+            if (biweeklies.Count > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(biweeklies.First()));
             // Fill the rest with available weekly recipes.
-            FillMenu();
-            // Check if menu is filled.
+            if (Menu.Count < MENU_SIZE)
+                FillMenu();
+            // Check if menu is filled. Reset RecipesDone if not. 
             if (Menu.Count < MENU_SIZE)
             {
                 RecipesDone.Clear();
@@ -98,13 +101,16 @@ namespace SmartPotato.MVVM.Model
         {
             for (int i = Menu.Count-1; i >=0; i--)
             {
-                if (Menu[i].IsDone)
+                Meal meal = Menu[i];
+                if (meal.IsDone)
                 {
-                    RecipesDone.Add(Menu[i].Recipe);
+                    meal.ArchiveMeal();
+                    RecipesDone.Add(meal.Recipe);
                     Menu.RemoveAt(i);
                 }
             }
             OutputHandler.ExportRecipesDone(RecipesDone);
+            RecipeBookParser.UpdateRecipeBook(RecipeBook);
             ComputeRecipesTodo();
             ComputeMenu();
         }
