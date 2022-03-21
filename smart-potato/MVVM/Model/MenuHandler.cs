@@ -70,7 +70,20 @@ namespace SmartPotato.MVVM.Model
             if(biweeklies.Count > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(biweeklies.First()));
             // Fill the rest with available weekly recipes.
-            var weeklies = new Queue<Recipe> (recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
+            FillMenu();
+            // Check if menu is filled.
+            if (Menu.Count < MENU_SIZE)
+            {
+                OutputHandler.ClearRecipesDone();
+                ComputeRecipesTodo();
+                FillMenu();
+            }
+            OutputHandler.ExportMenu(Menu);
+        }
+
+        private static void FillMenu()
+        {
+            var weeklies = new Queue<Recipe>(recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
             while (Menu.Count < MENU_SIZE)
             {
                 if (weeklies.Count > 0)
@@ -78,12 +91,6 @@ namespace SmartPotato.MVVM.Model
                 else
                     break;
             }
-
-            // TODO : handle not enough recipes for the menu.
-            // Empty recipe done and recompute recipes to do.
-            // Restart ComputeMenu.
-
-            OutputHandler.ExportMenu(Menu);
         }
 
         public static string PrintRecipeBook()

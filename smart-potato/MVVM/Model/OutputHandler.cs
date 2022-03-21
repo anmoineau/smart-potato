@@ -56,6 +56,11 @@ namespace SmartPotato.MVVM.Model
             }
         }
 
+        public static void ClearRecipesDone()
+        {
+            File.WriteAllText(DoneRecordPath, String.Empty);
+        }
+
         private class DoneRecord
         {
             public uint UID { get; set; }
