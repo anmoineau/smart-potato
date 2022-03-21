@@ -15,11 +15,13 @@ namespace SmartPotato.MVVM.ViewModel
             try
             {
                 MenuHandler.RecipeBook = RecipeBookParser.ReadRecipeBook();
-                Debug.WriteLine(MenuHandler.PrintRecipeBook());
+                //Debug.WriteLine(MenuHandler.PrintRecipeBook());
+                MenuHandler.Menu = OutputHandler.GetMenu(MenuHandler.RecipeBook);
+                Debug.WriteLine(MenuHandler.PrintMenu());
                 MenuHandler.ComputeRecipesTodo();
                 Debug.WriteLine(MenuHandler.PrintRecipesTodo());
                 MenuHandler.ComputeMenu();
-                Debug.WriteLine(MenuHandler.PrintMenu());
+                //Debug.WriteLine(MenuHandler.PrintMenu());
             }
             catch (Exception ex)
             {

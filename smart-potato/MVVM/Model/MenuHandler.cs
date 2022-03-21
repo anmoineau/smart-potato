@@ -82,6 +82,8 @@ namespace SmartPotato.MVVM.Model
             // TODO : handle not enough recipes for the menu.
             // Empty recipe done and recompute recipes to do.
             // Restart ComputeMenu.
+
+            OutputHandler.ExportMenu(Menu);
         }
 
         public static string PrintRecipeBook()
