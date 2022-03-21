@@ -78,6 +78,10 @@ namespace SmartPotato.MVVM.Model
                 else
                     break;
             }
+
+            // TODO : handle not enough recipes for the menu.
+            // Empty recipe done and recompute recipes to do.
+            // Restart ComputeMenu.
         }
 
         public static string PrintRecipeBook()
