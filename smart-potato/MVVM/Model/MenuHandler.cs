@@ -29,7 +29,7 @@ namespace SmartPotato.MVVM.Model
             set { recipesTodo = value; }
         }
 
-        private static List<Recipe> recipesDone = new();
+        private static List<Recipe> recipesDone = OutputHandler.GetRecipesDone(RecipeBook);
         public static List<Recipe> RecipesDone
         {
             get { return recipesDone; }
