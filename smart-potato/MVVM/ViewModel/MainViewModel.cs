@@ -14,9 +14,14 @@ namespace SmartPotato.MVVM.ViewModel
         {
             try
             {
-                MenuHandler.ComputeRecipesTodo();
+                MenuHandler.RenewMenu();
                 Debug.WriteLine(MenuHandler.PrintRecipesTodo());
                 MenuHandler.ComputeMenu();
+                for(int i = 0; i < 4; i++)
+                {
+                    MenuHandler.Menu[i].IsDone = true;
+                }
+                OutputHandler.ExportMenu(MenuHandler.Menu);
             }
             catch (Exception ex)
             {
