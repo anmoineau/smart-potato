@@ -49,24 +49,24 @@ namespace SmartPotato.MVVM.Model
         {
             foreach (var recipe in RecipeBook)
             {
-                if (recipesDone.Exists(r => r.UID == recipe.UID))
+                if (RecipesDone.Exists(r => r.UID == recipe.UID))
                     continue;
                 if (Menu.Exists(m => m.Recipe.UID == recipe.UID))
                     continue;
                 if (!recipe.IsSeasonal())
                     continue;
-                recipesTodo.Add(recipe);
+                RecipesTodo.Add(recipe);
             }
         }
 
         public static void ComputeMenu()
         {
             // Add one monthly recipe if available.
-            var monthlies = recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.MONTHLY);
+            var monthlies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.MONTHLY);
             if(monthlies.Count > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(monthlies.First()));
             // Add one biweekly recipe if available.
-            var biweeklies = recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);
+            var biweeklies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);
             if(biweeklies.Count > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(biweeklies.First()));
             // Fill the rest with available weekly recipes.
@@ -74,7 +74,8 @@ namespace SmartPotato.MVVM.Model
             // Check if menu is filled.
             if (Menu.Count < MENU_SIZE)
             {
-                OutputHandler.ClearRecipesDone();
+                RecipesDone.Clear();
+                OutputHandler.ExportRecipesDone(RecipesDone);
                 ComputeRecipesTodo();
                 FillMenu();
             }
@@ -83,7 +84,7 @@ namespace SmartPotato.MVVM.Model
 
         private static void FillMenu()
         {
-            var weeklies = new Queue<Recipe>(recipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
+            var weeklies = new Queue<Recipe>(RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
             while (Menu.Count < MENU_SIZE)
             {
                 if (weeklies.Count > 0)
@@ -91,6 +92,21 @@ namespace SmartPotato.MVVM.Model
                 else
                     break;
             }
+        }
+
+        public static void RenewMenu()
+        {
+            for (int i = Menu.Count-1; i >=0; i--)
+            {
+                if (Menu[i].IsDone)
+                {
+                    RecipesDone.Add(Menu[i].Recipe);
+                    Menu.RemoveAt(i);
+                }
+            }
+            OutputHandler.ExportRecipesDone(RecipesDone);
+            ComputeRecipesTodo();
+            ComputeMenu();
         }
 
         public static string PrintRecipeBook()
