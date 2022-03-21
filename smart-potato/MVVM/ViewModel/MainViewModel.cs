@@ -19,7 +19,7 @@ namespace SmartPotato.MVVM.ViewModel
 
                 Debug.WriteLine(MenuHandler.PrintRecipesTodo());
                 MenuHandler.ComputeMenu();
-                for(int i = 0; i < 4; i++)
+                for(int i = 0; i < 1; i++)
                 {
                     MenuHandler.Menu[i].IsDone = true;
                 }

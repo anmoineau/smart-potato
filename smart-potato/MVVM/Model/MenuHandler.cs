@@ -55,6 +55,8 @@ namespace SmartPotato.MVVM.Model
                     continue;
                 if (!recipe.IsSeasonal())
                     continue;
+                if (!recipe.IsReady())
+                    continue;
                 RecipesTodo.Add(recipe);
             }
         }

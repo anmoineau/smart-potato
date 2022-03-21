@@ -68,9 +68,35 @@ namespace SmartPotato.MVVM.Model
 
         /**** Methods ****/
 
+        public bool IsReady()
+        {
+            TimeSpan timeDelta = TimeProvider.CurrentTime - LastMade;
+            switch (Frequency)
+            {
+                case Frequencies.WEEKLY:
+                    TimeSpan weekSpan = new(7, 0, 0, 0);
+                    if (timeDelta >= weekSpan)
+                        return true;
+                    break;
+                case Frequencies.BIWEEKLY:
+                    TimeSpan biweekSpan = new(14, 0, 0, 0);
+                    if (timeDelta >= biweekSpan)
+                        return true;
+                    break;
+                case Frequencies.MONTHLY:
+                    TimeSpan monthSpan = new(28,0,0,0);
+                    if (timeDelta >= monthSpan)
+                        return true;
+                    break;
+                default:
+                    break;
+            };
+            return false;
+        }
+
         public bool IsSeasonal()
         {
-            return Season.HasFlag(GetSeason(DateTime.Now));
+            return Season.HasFlag(GetSeason(TimeProvider.CurrentTime));
         }
 
         private static Seasons GetSeason(DateTime date)
