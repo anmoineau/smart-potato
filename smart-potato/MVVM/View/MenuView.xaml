@@ -45,11 +45,12 @@
         <Button Content="Générer"
                 Grid.Column="1"
                 Grid.Row="1"
-                Style="{StaticResource GenericViewButton}"
                 MinHeight="90"
                 MaxWidth="400"
                 VerticalAlignment="Bottom"
-                Margin="20,40"/>
+                Margin="20,40"
+                Style="{StaticResource GenericViewButton}"
+                Command="{Binding RenewViewCommand}"/>
 
     </Grid>
 </UserControl>

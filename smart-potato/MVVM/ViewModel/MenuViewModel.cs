@@ -8,21 +8,37 @@ using System.Threading.Tasks;
 
 namespace SmartPotato.MVVM.ViewModel
 {
-    internal class MenuViewModel  :ObservableObject
+    internal class MenuViewModel : ObservableObject
     {
-        private List<Meal>? menu;
+        /**** Properties ****/
 
+        private List<Meal>? menu;
         public List<Meal>? Menu
         {
             get { return menu; }
             set { menu = value; OnPropertyChanged(); }
         }
 
+        /**** Relay Commands ****/
+        public RelayCommand? RenewViewCommand { get; set; }
+
+        /*** CanExecute ***/
+        private bool isRenewEnabled = true;
+
+        /**** Constructor ****/
         public MenuViewModel()
         {
+            InitializeViewCommands();
             Menu = MenuHandler.Menu;
-            MenuHandler.RenewMenu();
         }
 
+        /**** Methods ****/
+        private void InitializeViewCommands()
+        {
+            RenewViewCommand = new RelayCommand(o =>
+            {
+                MenuHandler.RenewMenu();
+            }, canExecute => isRenewEnabled);
+        }
     }
 }

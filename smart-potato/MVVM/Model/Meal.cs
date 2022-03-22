@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartPotato.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartPotato.MVVM.Model
 {
-    internal class Meal
+    internal class Meal : ObservableObject
     {
         /**** Properties ****/
 
@@ -25,6 +26,7 @@ namespace SmartPotato.MVVM.Model
                 isDone = value;
                 if(isDone)
                     DoneDate = TimeProvider.CurrentTime;
+                OnPropertyChanged();
             }
         }
 
