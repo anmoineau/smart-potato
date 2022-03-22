@@ -6,9 +6,19 @@
              StartupUri="MVVM/View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Colors.xaml"/>
+                <ResourceDictionary Source="/Resources/Fonts.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
             <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
                 <view:MainWindow/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
+                <view:MenuView/>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
