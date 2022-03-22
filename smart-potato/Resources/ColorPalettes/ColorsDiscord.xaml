@@ -10,7 +10,10 @@
     <SolidColorBrush x:Key="ButtonBorderBrush">#313539</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonPressedBrush">#313539</SolidColorBrush>
     <SolidColorBrush x:Key="ButtonDisabledBrush">#FCF4EE</SolidColorBrush>
-    
+
+    <SolidColorBrush x:Key="ThumbBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="ThumbCapturedBrush">#23272A</SolidColorBrush>
+
     <SolidColorBrush x:Key="HighlightBrush">#7289DA</SolidColorBrush>
     
     <SolidColorBrush x:Key="TextBrush">#FCF4EE</SolidColorBrush>

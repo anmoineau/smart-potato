@@ -26,7 +26,13 @@
                    VerticalAlignment="Center"
                    Margin="40,0"/>
         <!-- List -->
-        
+        <ListView Grid.Column="0"
+                  Grid.Row="1"
+                  Margin="40,0,40,40"
+                  Background="Transparent"
+                  BorderThickness="2"
+                  ItemsSource="{Binding Menu}"
+                  ItemContainerStyle="{StaticResource MealItem}"/>
         <!-- Buttons -->
         <Button Content="Editer"
                 Grid.Column="1"
@@ -35,7 +41,7 @@
                 MinHeight="90"
                 MaxWidth="400"
                 VerticalAlignment="Top"
-                Margin="20,40"/>
+                Margin="20,0"/>
         <Button Content="Générer"
                 Grid.Column="1"
                 Grid.Row="1"
