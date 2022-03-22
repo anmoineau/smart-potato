@@ -1,4 +1,4 @@
-﻿using SmartPotato.Core;
+using SmartPotato.Core;
 using SmartPotato.MVVM.Model;
 using System;
 using System.Collections.Generic;
