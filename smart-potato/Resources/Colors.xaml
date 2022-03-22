@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="TitleBarBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="BackgroundBrush">#393D41</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuButtonBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuBackgroundBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="DisabledButtonBrush">#FCF4EE</SolidColorBrush>
+    <SolidColorBrush x:Key="HighlightBrush">#7289DA</SolidColorBrush>
+    <SolidColorBrush x:Key="TextBrush">#FCF4EE</SolidColorBrush>
+</ResourceDictionary>
