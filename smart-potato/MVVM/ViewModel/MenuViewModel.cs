@@ -2,6 +2,8 @@
 using SmartPotato.MVVM.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +14,11 @@ namespace SmartPotato.MVVM.ViewModel
     {
         /**** Properties ****/
 
-        private List<Meal>? menu;
-        public List<Meal>? Menu
+        private ObservableCollection<Meal>? menu;
+        public ObservableCollection<Meal>? Menu
         {
             get { return menu; }
-            set { menu = value; OnPropertyChanged(); }
+            set { menu = value;}
         }
 
         /**** Relay Commands ****/

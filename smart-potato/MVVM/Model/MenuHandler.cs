@@ -1,6 +1,7 @@
 ﻿using SmartPotato.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -49,11 +50,11 @@ namespace SmartPotato.MVVM.Model
             set { recipesDone = value; }
         }
 
-        private List<Meal> menu = new();
-        public List<Meal> Menu
+        private ObservableCollection<Meal> menu = new();
+        public ObservableCollection<Meal> Menu
         {
             get { return menu; }
-            set { menu = value; OnPropertyChanged(); }
+            set { menu = value; }
         }
 
         /**** Constructor ****/
@@ -72,7 +73,7 @@ namespace SmartPotato.MVVM.Model
             {
                 if (RecipesDone.Exists(r => r.UID == recipe.UID))
                     continue;
-                if (Menu.Exists(m => m.Recipe.UID == recipe.UID))
+                if (Menu.Where(m => m.Recipe.UID == recipe.UID).Any())
                     continue;
                 if (!recipe.IsSeasonal())
                     continue;
@@ -106,7 +107,6 @@ namespace SmartPotato.MVVM.Model
                 FillMenu();
             }
             OutputHandler.ExportMenu(Menu);
-            OnPropertyChanged("Menu");
         }
 
         private void FillMenu()
