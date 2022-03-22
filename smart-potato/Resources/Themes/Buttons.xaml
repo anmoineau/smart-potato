@@ -76,7 +76,7 @@
                 <Setter Property="Background" Value="{StaticResource MenuButtonBrush}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource DisabledButtonBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource ButtonDisabledBrush}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
