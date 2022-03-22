@@ -14,11 +14,16 @@ namespace SmartPotato.MVVM.ViewModel
         {
             try
             {
-                List<Recipe> recipes = RecipeBookParser.ReadRecipeBook();
-                foreach (var _recipe in recipes)
+                MenuHandler.RenewMenu();
+                TimeProvider.CurrentTime = TimeProvider.CurrentTime.AddDays(7);
+
+                Debug.WriteLine(MenuHandler.PrintRecipesTodo());
+                MenuHandler.ComputeMenu();
+                for(int i = 0; i < 1; i++)
                 {
-                    Debug.WriteLine(_recipe.ToString());
+                    MenuHandler.Menu[i].IsDone = true;
                 }
+                OutputHandler.ExportMenu(MenuHandler.Menu);
             }
             catch (Exception ex)
             {
