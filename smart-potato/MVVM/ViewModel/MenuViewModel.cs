@@ -29,7 +29,7 @@ namespace SmartPotato.MVVM.ViewModel
         public MenuViewModel()
         {
             InitializeViewCommands();
-            Menu = MenuHandler.Menu;
+            Menu = MenuHandler.GetInstance.Menu;
         }
 
         /**** Methods ****/
@@ -37,7 +37,7 @@ namespace SmartPotato.MVVM.ViewModel
         {
             RenewViewCommand = new RelayCommand(o =>
             {
-                MenuHandler.RenewMenu();
+                MenuHandler.GetInstance.RenewMenu();
             }, canExecute => isRenewEnabled);
         }
     }

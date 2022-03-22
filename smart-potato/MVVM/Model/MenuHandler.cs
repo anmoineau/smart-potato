@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartPotato.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,45 +8,65 @@ using System.Threading.Tasks;
 
 namespace SmartPotato.MVVM.Model
 {
-    internal static class MenuHandler
+    internal sealed class MenuHandler : ObservableObject
     {
         /**** Constants ****/
 
         public static uint MENU_SIZE { get; } = 7;
 
+        /**** Singleton ****/
+
+        private static MenuHandler? instance;
+        public static MenuHandler GetInstance {
+            get 
+            { 
+                if(instance == null)
+                    instance = new MenuHandler();
+                return instance;
+            } 
+        }
+
         /**** Properties ****/
 
-        private static List<Recipe> recipeBook = RecipeBookParser.ReadRecipeBook();
-        public static List<Recipe> RecipeBook
+        private List<Recipe> recipeBook = new();
+        public List<Recipe> RecipeBook
         {
             get { return recipeBook; }
             set { recipeBook = value; }
         }
 
-        private static List<Recipe> recipesTodo = new();
-        public static List<Recipe> RecipesTodo
+        private List<Recipe> recipesTodo = new();
+        public List<Recipe> RecipesTodo
         {
             get { return recipesTodo; }
             set { recipesTodo = value; }
         }
 
-        private static List<Recipe> recipesDone = OutputHandler.GetRecipesDone(RecipeBook);
-        public static List<Recipe> RecipesDone
+        private List<Recipe> recipesDone = new();
+        public List<Recipe> RecipesDone
         {
             get { return recipesDone; }
             set { recipesDone = value; }
         }
 
-        private static List<Meal> menu = OutputHandler.GetMenu(RecipeBook);
-        public static List<Meal> Menu
+        private List<Meal> menu = new();
+        public List<Meal> Menu
         {
             get { return menu; }
-            set { menu = value; }
+            set { menu = value; OnPropertyChanged(); }
+        }
+
+        /**** Constructor ****/
+        private MenuHandler()
+        {
+            RecipeBook = RecipeBookParser.ReadRecipeBook();
+            RecipesDone = OutputHandler.GetRecipesDone(RecipeBook)!;
+            Menu = OutputHandler.GetMenu(RecipeBook)!;
         }
 
         /**** Methods ****/
 
-        public static void ComputeRecipesTodo()
+        public void ComputeRecipesTodo()
         {
             foreach (var recipe in RecipeBook)
             {
@@ -61,7 +82,7 @@ namespace SmartPotato.MVVM.Model
             }
         }
 
-        public static void ComputeMenu()
+        public void ComputeMenu()
         {
             if (Menu.Count >= MENU_SIZE)
                 return;
@@ -85,9 +106,10 @@ namespace SmartPotato.MVVM.Model
                 FillMenu();
             }
             OutputHandler.ExportMenu(Menu);
+            OnPropertyChanged("Menu");
         }
 
-        private static void FillMenu()
+        private void FillMenu()
         {
             var weeklies = new Queue<Recipe>(RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
             while (Menu.Count < MENU_SIZE)
@@ -99,7 +121,7 @@ namespace SmartPotato.MVVM.Model
             }
         }
 
-        public static void RenewMenu()
+        public void RenewMenu()
         {
             for (int i = Menu.Count-1; i >=0; i--)
             {
@@ -117,7 +139,7 @@ namespace SmartPotato.MVVM.Model
             ComputeMenu();
         }
 
-        public static string PrintRecipeBook()
+        public string PrintRecipeBook()
         {
             string format = "";
             format += "Recipe Book :\n\n";
@@ -128,7 +150,7 @@ namespace SmartPotato.MVVM.Model
             return format;
         }
 
-        public static string PrintRecipesTodo()
+        public string PrintRecipesTodo()
         {
             string format = "";
             format += "Recipes To Do :\n\n";
@@ -139,7 +161,7 @@ namespace SmartPotato.MVVM.Model
             return format;
         }
 
-        public static string PrintMenu()
+        public string PrintMenu()
         {
             string format = "";
             format += "Menu :\n\n";
