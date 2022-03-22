@@ -1,34 +1,62 @@
-﻿using SmartPotato.MVVM.Model;
+﻿using SmartPotato.Core;
+using SmartPotato.MVVM.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SmartPotato.MVVM.ViewModel
 {
-    internal class MainViewModel
+    internal class MainViewModel : ObservableObject
     {
+        /**** Properties ****/
+        private object? currentView;
+        public object? CurrentView
+        {
+            get { return currentView; }
+            set 
+            { 
+                currentView = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string AssemblyVersion { get; set; }
+
+        /**** Relay Commands ****/
+        public RelayCommand? MenuViewCommand { get; set; }
+
+        /*** ViewModels ***/
+        public MenuViewModel? MenuVM { get; set; }
+
+        /*** CanExecute ***/
+        private bool isMenuEnabled = true;
+
+        /**** Constructor ****/
         public MainViewModel()
         {
-            try
-            {
-                MenuHandler.RenewMenu();
-                TimeProvider.CurrentTime = TimeProvider.CurrentTime.AddDays(7);
+            Version? version = Assembly.GetExecutingAssembly().GetName().Version;    // Get assembly version.
+            AssemblyVersion = $"{version!.Major}.{version!.Minor}.{version!.Build}";   // Format assembly version.
+            InitializeViewModels();
+            InitializeViewCommands();
+            CurrentView = MenuVM!;
+        }
 
-                Debug.WriteLine(MenuHandler.PrintRecipesTodo());
-                MenuHandler.ComputeMenu();
-                for(int i = 0; i < 1; i++)
-                {
-                    MenuHandler.Menu[i].IsDone = true;
-                }
-                OutputHandler.ExportMenu(MenuHandler.Menu);
-            }
-            catch (Exception ex)
+        /**** Methods ****/
+        private void InitializeViewModels()
+        {
+            MenuVM = new MenuViewModel();
+        }
+
+        private void InitializeViewCommands()
+        {
+            MenuViewCommand = new RelayCommand(o =>
             {
-                Debug.WriteLine(ex.Message);
-            }
+                CurrentView = MenuVM;
+            }, canExecute => isMenuEnabled);
         }
     }
 }
