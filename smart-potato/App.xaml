@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Resources/Colors.xaml"/>
                 <ResourceDictionary Source="/Resources/Fonts.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/Buttons.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/TextBlocks.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type viewModel:MainViewModel}">

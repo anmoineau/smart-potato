@@ -11,8 +11,39 @@
              d:DataContext="{d:DesignInstance Type=viewModel:MenuViewModel}"
              UseLayoutRounding="True">
     <Grid>
-        <TextBlock Text="MenuView"
-                   FontFamily="{StaticResource DefaultFont}"
-                   FontSize="50"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Title -->
+        <TextBlock Text="Menu de la semaine"
+                   Style="{StaticResource TitleTextBlock}"
+                   VerticalAlignment="Center"
+                   Margin="40,0"/>
+        <!-- List -->
+        
+        <!-- Buttons -->
+        <Button Content="Editer"
+                Grid.Column="1"
+                Grid.Row="1"
+                Style="{StaticResource GenericViewButton}"
+                MinHeight="90"
+                MaxWidth="400"
+                VerticalAlignment="Top"
+                Margin="20,40"/>
+        <Button Content="Générer"
+                Grid.Column="1"
+                Grid.Row="1"
+                Style="{StaticResource GenericViewButton}"
+                MinHeight="90"
+                MaxWidth="400"
+                VerticalAlignment="Bottom"
+                Margin="20,40"/>
+
     </Grid>
 </UserControl>
