@@ -75,6 +75,7 @@
             </Grid>
         </Border>
 
+        <!-- Menu Panel-->
         <Border Grid.Row="1"
                 BorderBrush="{StaticResource MenuBackgroundBrush}"
                 BorderThickness="0,0,1,0">
@@ -86,22 +87,22 @@
 
                 <RadioButton Content="Planification"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MenuViewCommand}">
+                             Command="{Binding PlanningViewCommand}">
                 </RadioButton>
 
                 <RadioButton Content="Livre de recette"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MenuViewCommand}">
+                             Command="{Binding RecipeBookViewCommand}">
                 </RadioButton>
 
                 <RadioButton Content="Paramètres"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MenuViewCommand}">
+                             Command="{Binding ParametersViewCommand}">
                 </RadioButton>
 
                 <RadioButton Content="A propos de"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MenuViewCommand}">
+                             Command="{Binding AboutViewCommand}">
                 </RadioButton>
             </StackPanel>
         </Border>

@@ -28,12 +28,27 @@ namespace SmartPotato.MVVM.ViewModel
 
         /**** Relay Commands ****/
         public RelayCommand? MenuViewCommand { get; set; }
+        public RelayCommand? PlanningViewCommand { get; set; }
+        public RelayCommand? RecipeBookViewCommand { get; set; }
+        public RelayCommand? RecipeViewCommand { get; set; }
+        public RelayCommand? ParametersViewCommand { get; set; }
+        public RelayCommand? AboutViewCommand { get; set; }
 
         /*** ViewModels ***/
         public MenuViewModel? MenuVM { get; set; }
+        public PlanningViewModel? PlanningVM { get; set; }
+        public RecipeBookViewModel? RecipeBookVM { get; set; }
+        public RecipeViewModel? RecipeVM { get; set; }
+        public ParametersViewModel? ParametersVM { get; set; }
+        public AboutViewModel? AboutVM { get; set; }
 
         /*** CanExecute ***/
         private bool isMenuEnabled = true;
+        private bool isPlanningEnabled = true;
+        private bool isRecipeBookEnabled = true;
+        private bool isRecipeEnabled = true;
+        private bool isParametersEnabled = true;
+        private bool isAboutEnabled = true;
 
         /**** Constructor ****/
         public MainViewModel()
@@ -42,13 +57,18 @@ namespace SmartPotato.MVVM.ViewModel
             AssemblyVersion = $"{version!.Major}.{version!.Minor}.{version!.Build}";   // Format assembly version.
             InitializeViewModels();
             InitializeViewCommands();
-            CurrentView = MenuVM!;
+            CurrentView = RecipeVM!;
         }
 
         /**** Methods ****/
         private void InitializeViewModels()
         {
             MenuVM = new MenuViewModel();
+            PlanningVM = new PlanningViewModel();
+            RecipeBookVM = new RecipeBookViewModel();
+            RecipeVM = new RecipeViewModel();
+            ParametersVM = new ParametersViewModel();
+            AboutVM = new AboutViewModel();
         }
 
         private void InitializeViewCommands()
@@ -57,6 +77,31 @@ namespace SmartPotato.MVVM.ViewModel
             {
                 CurrentView = MenuVM;
             }, canExecute => isMenuEnabled);
+
+            PlanningViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = PlanningVM;
+            }, canExecute => isPlanningEnabled);
+
+            RecipeBookViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RecipeBookVM;
+            }, canExecute => isRecipeBookEnabled);
+
+            RecipeViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = RecipeVM;
+            }, canExecute => isRecipeEnabled);
+
+            ParametersViewCommand= new RelayCommand(o =>
+            {
+                CurrentView = ParametersVM;
+            }, canExecute => isParametersEnabled);
+
+            AboutViewCommand= new RelayCommand(o =>
+            {
+                CurrentView = AboutVM;
+            }, canExecute => isAboutEnabled);
         }
     }
 }
