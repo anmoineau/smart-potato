@@ -63,6 +63,7 @@ namespace SmartPotato.MVVM.Model
             RecipeBook = RecipeBookParser.ReadRecipeBook();
             RecipesDone = OutputHandler.GetRecipesDone(RecipeBook)!;
             Menu = OutputHandler.GetMenu(RecipeBook)!;
+            ComputeRecipesTodo();
         }
 
         /**** Methods ****/
