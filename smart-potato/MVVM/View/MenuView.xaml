@@ -42,7 +42,7 @@
                 MaxWidth="400"
                 VerticalAlignment="Top"
                 Margin="20,0"/>
-        <Button Content="Générer"
+        <Button Content="Renouveler"
                 Grid.Column="1"
                 Grid.Row="1"
                 MinHeight="90"
