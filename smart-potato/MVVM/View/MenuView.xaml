@@ -50,7 +50,7 @@
                 VerticalAlignment="Bottom"
                 Margin="20,40"
                 Style="{StaticResource GenericViewButton}"
-                Command="{Binding RenewViewCommand}"/>
+                Command="{Binding RenewMenuCommand}"/>
 
     </Grid>
 </UserControl>

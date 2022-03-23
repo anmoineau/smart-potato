@@ -15,10 +15,12 @@ namespace SmartPotato.MVVM.ViewModel
         public ObservableCollection<Meal> Menu { get; set; }
 
         /**** Relay Commands ****/
-        public RelayCommand? RenewViewCommand { get; set; }
+        public RelayCommand? RenewMenuCommand { get; set; }
+        public RelayCommand? SelectRecipeCommand { get; set; }
 
         /*** CanExecute ***/
         private bool isRenewEnabled = true;
+        private bool isSelectRecipeEnabled = true;
 
         /**** Constructor ****/
         public MenuViewModel()
@@ -30,10 +32,15 @@ namespace SmartPotato.MVVM.ViewModel
         /**** Methods ****/
         private void InitializeViewCommands()
         {
-            RenewViewCommand = new RelayCommand(o =>
+            RenewMenuCommand = new RelayCommand(o =>
             {
                 MenuHandler.GetInstance.RenewMenu();
             }, canExecute => isRenewEnabled);
+
+            SelectRecipeCommand = new RelayCommand(o =>
+            {
+                Debug.WriteLine("Selected : " + o.ToString());
+            }, canExecute => isSelectRecipeEnabled);
         }
     }
 }
