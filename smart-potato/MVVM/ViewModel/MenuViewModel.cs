@@ -12,14 +12,7 @@ namespace SmartPotato.MVVM.ViewModel
 {
     internal class MenuViewModel : ObservableObject
     {
-        /**** Properties ****/
-
-        private ObservableCollection<Meal>? menu;
-        public ObservableCollection<Meal>? Menu
-        {
-            get { return menu; }
-            set { menu = value;}
-        }
+        public ObservableCollection<Meal> Menu { get; set; }
 
         /**** Relay Commands ****/
         public RelayCommand? RenewViewCommand { get; set; }
