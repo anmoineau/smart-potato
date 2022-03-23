@@ -36,15 +36,15 @@ namespace SmartPotato.MVVM.Model
             set { recipeBook = value; }
         }
 
-        private List<Recipe> recipesTodo = new();
-        public List<Recipe> RecipesTodo
+        private ObservableCollection<Recipe> recipesTodo = new();
+        public ObservableCollection<Recipe> RecipesTodo
         {
             get { return recipesTodo; }
             set { recipesTodo = value; }
         }
 
-        private List<Recipe> recipesDone = new();
-        public List<Recipe> RecipesDone
+        private ObservableCollection<Recipe> recipesDone = new();
+        public ObservableCollection<Recipe> RecipesDone
         {
             get { return recipesDone; }
             set { recipesDone = value; }
@@ -71,7 +71,7 @@ namespace SmartPotato.MVVM.Model
         {
             foreach (var recipe in RecipeBook)
             {
-                if (RecipesDone.Exists(r => r.UID == recipe.UID))
+                if (RecipesDone.Where(r => r.UID == recipe.UID).Any())
                     continue;
                 if (Menu.Where(m => m.Recipe.UID == recipe.UID).Any())
                     continue;
@@ -88,12 +88,12 @@ namespace SmartPotato.MVVM.Model
             if (Menu.Count >= MENU_SIZE)
                 return;
             // Add one monthly recipe if available.
-            var monthlies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.MONTHLY);        // TODO : check last made
-            if(monthlies.Count > 0 && Menu.Count < MENU_SIZE)
+            var monthlies = RecipesTodo.Where(r => r.Frequency == Recipe.Frequencies.MONTHLY);
+            if(monthlies.Count() > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(monthlies.First()));
             // Add one biweekly recipe if available.
-            var biweeklies = RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);      // TODO : check last made
-            if (biweeklies.Count > 0 && Menu.Count < MENU_SIZE)
+            var biweeklies = RecipesTodo.Where(r => r.Frequency == Recipe.Frequencies.BIWEEKLY);
+            if (biweeklies.Count() > 0 && Menu.Count < MENU_SIZE)
                 Menu.Add(new Meal(biweeklies.First()));
             // Fill the rest with available weekly recipes.
             if (Menu.Count < MENU_SIZE)
@@ -111,7 +111,7 @@ namespace SmartPotato.MVVM.Model
 
         private void FillMenu()
         {
-            var weeklies = new Queue<Recipe>(RecipesTodo.FindAll(r => r.Frequency == Recipe.Frequencies.WEEKLY));
+            var weeklies = new Queue<Recipe>(RecipesTodo.Where(r => r.Frequency == Recipe.Frequencies.WEEKLY));
             while (Menu.Count < MENU_SIZE)
             {
                 if (weeklies.Count > 0)

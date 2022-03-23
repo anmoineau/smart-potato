@@ -17,9 +17,9 @@ namespace SmartPotato.MVVM.Model
         public static string DoneRecordPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"SmartPotato\RecipesDone.csv");
 
         /**** Methods ****/
-        public static List<Recipe> GetRecipesDone(List<Recipe> recipeBook)
+        public static ObservableCollection<Recipe> GetRecipesDone(List<Recipe> recipeBook)
         {
-            List<Recipe> recipes = new();
+            ObservableCollection<Recipe> recipes = new();
             try
             {
                 using (var reader = new StreamReader(DoneRecordPath))
@@ -38,7 +38,7 @@ namespace SmartPotato.MVVM.Model
             return recipes;
         }
 
-        public static void ExportRecipesDone(List<Recipe> recipes)
+        public static void ExportRecipesDone(ObservableCollection<Recipe> recipes)
         {
             List<DoneRecord> DoneRecords = new();
             foreach (var recipe in recipes)
