@@ -69,6 +69,7 @@ namespace SmartPotato.MVVM.Model
 
         public void ComputeRecipesTodo()
         {
+            RecipesTodo.Clear();
             foreach (var recipe in RecipeBook)
             {
                 if (RecipesDone.Where(r => r.UID == recipe.UID).Any())
@@ -106,6 +107,7 @@ namespace SmartPotato.MVVM.Model
                 ComputeRecipesTodo();
                 FillMenu();
             }
+            ComputeRecipesTodo();
             OutputHandler.ExportMenu(Menu);
         }
 
