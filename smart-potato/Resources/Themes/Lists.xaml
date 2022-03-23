@@ -16,7 +16,7 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 Command="{Binding Path=DataContext.SelectRecipeCommand , RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
-                                CommandParameter="{Binding Recipe.Name}"
+                                CommandParameter="{Binding Recipe.UID}"
                                 Style="{StaticResource ListItemButton}"/>
                         <CheckBox Grid.Column="0"
                                   IsChecked="{Binding IsDone}"

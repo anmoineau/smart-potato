@@ -11,8 +11,9 @@
              d:DataContext="{d:DesignInstance Type=viewModel:RecipeViewModel}"
              UseLayoutRounding="True">
     <Grid>
-        <TextBlock Text="RecipeView"
-                   FontFamily="{StaticResource DefaultFont}"
-                   FontSize="50"/>
+        <TextBlock Text="{Binding CurrentRecipe.Name}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource TitleTextBlock}"/>
     </Grid>
 </UserControl>

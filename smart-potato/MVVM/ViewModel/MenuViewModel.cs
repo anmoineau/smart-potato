@@ -40,9 +40,8 @@ namespace SmartPotato.MVVM.ViewModel
 
             SelectRecipeCommand = new RelayCommand(o =>
             {
-                Debug.WriteLine("Selected : " + o.ToString());
                 var win = new PopUpWindow();
-                RecipeViewModel recipeVM = new();
+                RecipeViewModel recipeVM = new((uint)o);
                 win.Content = recipeVM;
                 win.Show();
             }, canExecute => isSelectRecipeEnabled);
