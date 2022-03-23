@@ -15,7 +15,8 @@
                         <CheckBox Grid.Column="0"
                                   IsChecked="{Binding IsDone}"
                                   VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"/>
+                                  HorizontalAlignment="Center"
+                                  Style="{DynamicResource MenuCheckBox}"/>
                         <TextBlock Grid.Column="1"
                                    Text="{Binding Recipe.Name}"
                                    FontFamily="{StaticResource DefaultFont}"
