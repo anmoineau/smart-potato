@@ -1,5 +1,6 @@
 ﻿using SmartPotato.Core;
 using SmartPotato.MVVM.Model;
+using SmartPotato.MVVM.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,6 +41,10 @@ namespace SmartPotato.MVVM.ViewModel
             SelectRecipeCommand = new RelayCommand(o =>
             {
                 Debug.WriteLine("Selected : " + o.ToString());
+                var win = new PopUpWindow();
+                RecipeViewModel recipeVM = new();
+                win.Content = recipeVM;
+                win.Show();
             }, canExecute => isSelectRecipeEnabled);
         }
     }

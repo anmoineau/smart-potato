@@ -30,7 +30,8 @@
                                    Foreground="{StaticResource TextBrush}"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
-                                   Margin="30,10"/>
+                                   Margin="30,10"
+                                   IsHitTestVisible="False"/>
                         
                     </Grid>
                 </ControlTemplate>
