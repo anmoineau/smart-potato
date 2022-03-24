@@ -17,11 +17,9 @@ namespace SmartPotato.MVVM.ViewModel
 
         /**** Relay Commands ****/
         public RelayCommand? RenewMenuCommand { get; set; }
-        public RelayCommand? SelectRecipeCommand { get; set; }
 
         /*** CanExecute ***/
         private bool isRenewEnabled = true;
-        private bool isSelectRecipeEnabled = true;
 
         /**** Constructor ****/
         public MenuViewModel()
@@ -37,14 +35,6 @@ namespace SmartPotato.MVVM.ViewModel
             {
                 MenuHandler.GetInstance.RenewMenu();
             }, canExecute => isRenewEnabled);
-
-            SelectRecipeCommand = new RelayCommand(o =>
-            {
-                var win = new PopUpWindow();
-                RecipeViewModel recipeVM = new((uint)o);
-                win.Content = recipeVM;
-                win.Show();
-            }, canExecute => isSelectRecipeEnabled);
         }
     }
 }

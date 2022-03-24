@@ -15,7 +15,7 @@
                         <Button x:Name="ItemButton"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
-                                Command="{Binding Path=DataContext.SelectRecipeCommand , RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                Command="{Binding Path=DataContext.RecipeViewCommand , RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding Recipe.UID}"
                                 Style="{StaticResource ListItemButton}"/>
                         <CheckBox Grid.Column="0"
@@ -41,6 +41,7 @@
 
     <!-- Recipe Item -->
     <Style TargetType="ListViewItem" x:Key="RecipeItem">
+        <Setter Property="Margin" Value="10,10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -49,14 +50,20 @@
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
-
+                        <Button x:Name="ItemButton"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Command="{Binding Path=DataContext.RecipeViewCommand , RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding UID}"
+                                Style="{StaticResource ListItemButton}"/>
                         <TextBlock Grid.Column="0"
                                    Text="{Binding UID}"
                                    FontFamily="{StaticResource DefaultFont}"
                                    FontSize="24"
                                    Foreground="{StaticResource TextBrush}"
                                    HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"/>
                         <TextBlock Grid.Column="1"
                                    Text="{Binding Name}"
                                    FontFamily="{StaticResource DefaultFont}"
@@ -64,7 +71,8 @@
                                    Foreground="{StaticResource TextBrush}"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
-                                   Margin="30,10"/>
+                                   Margin="30,10"
+                                   IsHitTestVisible="False"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
