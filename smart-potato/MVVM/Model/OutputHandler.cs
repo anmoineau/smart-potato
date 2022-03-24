@@ -74,11 +74,7 @@ namespace SmartPotato.MVVM.Model
                     var records = csv.GetRecords<MealRecord>();
                     foreach (var record in records)
                     {
-                        Meal meal = new(recipeBook.Find(r => r.UID == record.UID)!)
-                        {
-                            IsDone = record.IsDone,
-                            DoneDate = record.DoneDate
-                        };
+                        Meal meal = new(recipeBook.Find(r => r.UID == record.UID)!, record.IsDone, record.DoneDate);
                         menu.Add(meal);
                     }
                 }

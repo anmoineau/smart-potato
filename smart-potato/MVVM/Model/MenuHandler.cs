@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -60,10 +61,33 @@ namespace SmartPotato.MVVM.Model
         /**** Constructor ****/
         private MenuHandler()
         {
+            Meal.MealCreated += Meal_MealCreated;
             RecipeBook = RecipeBookParser.ReadRecipeBook();
             RecipesDone = OutputHandler.GetRecipesDone(RecipeBook)!;
             Menu = OutputHandler.GetMenu(RecipeBook)!;
+            Menu.CollectionChanged += Menu_CollectionChanged;
+            
             ComputeRecipesTodo();
+        }
+
+        /**** Events Handlers ****/
+        private void Menu_CollectionChanged(object? sender, EventArgs e)
+        {
+            OutputHandler.ExportMenu(Menu);
+            if ( e is not NotifyCollectionChangedEventArgs)                     // Separate CollectionChanged from PropertyChanged
+                return;
+            var removedItems = ((NotifyCollectionChangedEventArgs)e).OldItems;  // Check if items have been removed
+            if (removedItems == null)
+                return;
+            foreach (var item in removedItems)
+            {
+                ((Meal)item).PropertyChanged -= Menu_CollectionChanged;         // Unsubscribe to prevent memory leak.
+            }
+        }
+
+        private void Meal_MealCreated(object? sender, EventArgs e)
+        {
+            ((Meal)sender!).PropertyChanged += Menu_CollectionChanged;
         }
 
         /**** Methods ****/
@@ -109,7 +133,6 @@ namespace SmartPotato.MVVM.Model
                 FillMenu();
             }
             ComputeRecipesTodo();
-            OutputHandler.ExportMenu(Menu);
         }
 
         private void FillMenu()
