@@ -64,6 +64,7 @@ namespace SmartPotato.MVVM.Model
             Meal.MealCreated += Meal_MealCreated;
             RecipeBook = RecipeBookParser.ReadRecipeBook();
             RecipesDone = OutputHandler.GetRecipesDone(RecipeBook)!;
+            RecipesDone.CollectionChanged += RecipesDone_CollectionChanged;
             Menu = OutputHandler.GetMenu(RecipeBook)!;
             Menu.CollectionChanged += Menu_CollectionChanged;
             
@@ -88,6 +89,11 @@ namespace SmartPotato.MVVM.Model
         private void Meal_MealCreated(object? sender, EventArgs e)
         {
             ((Meal)sender!).PropertyChanged += Menu_CollectionChanged;
+        }
+
+        private void RecipesDone_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OutputHandler.ExportRecipesDone(RecipesDone);
         }
 
         /**** Methods ****/
@@ -128,7 +134,6 @@ namespace SmartPotato.MVVM.Model
             if (Menu.Count < MENU_SIZE)
             {
                 RecipesDone.Clear();
-                OutputHandler.ExportRecipesDone(RecipesDone);
                 ComputeRecipesTodo();
                 FillMenu();
             }
@@ -159,7 +164,6 @@ namespace SmartPotato.MVVM.Model
                     Menu.RemoveAt(i);
                 }
             }
-            OutputHandler.ExportRecipesDone(RecipesDone);
             RecipeBookParser.UpdateRecipeBook(RecipeBook);
             ComputeRecipesTodo();
             ComputeMenu();

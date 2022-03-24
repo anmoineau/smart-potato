@@ -11,6 +11,7 @@ namespace SmartPotato.MVVM.ViewModel
 {
     internal class PlanningViewModel
     {
+        /**** Properties ****/
         public ObservableCollection<Recipe> RecipesDone { get; set; }
         public ObservableCollection<Recipe> RecipesTodo { get; set; }
 
