@@ -11,8 +11,14 @@
              d:DataContext="{d:DesignInstance Type=viewModel:RecipeBookViewModel}"
              UseLayoutRounding="True">
     <Grid>
-        <TextBlock Text="RecipeBookView"
-                   FontFamily="{StaticResource DefaultFont}"
-                   FontSize="50"/>
+        <ListView Background="Transparent"
+                  ItemsSource="{Binding RecipeBookFormat}"
+                  ItemContainerStyle="{StaticResource RecipeBookItem}"/>
+
+        <Separator Grid.Column="1"
+                   Width="1"
+                   Background="Gray"
+                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
+                   Margin="0,40,15,40"/>
     </Grid>
 </UserControl>

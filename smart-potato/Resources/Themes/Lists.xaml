@@ -79,6 +79,80 @@
         </Setter>
     </Style>
 
+    <!-- RecipeBook Item -->
+    <Style TargetType="ListViewItem" x:Key="RecipeBookItem">
+        <Setter Property="Margin" Value="30,10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid MinHeight="90">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- First Item -->
+                        <Button x:Name="Item1Button"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Command="{Binding Path=DataContext.RecipeViewCommand , RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding Item1.UID}"
+                                Style="{StaticResource ListItemButton}"/>
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Item1.UID}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   FontSize="24"
+                                   Foreground="{StaticResource TextBrush}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"/>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Item1.Name}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   FontSize="24"
+                                   Foreground="{StaticResource TextBrush}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="30,10"
+                                   IsHitTestVisible="False"/>
+                        <!-- Second Item -->
+                        <Button x:Name="Item2Button"
+                                Grid.Column="3"
+                                Grid.ColumnSpan="2"
+                                Command="{Binding Path=DataContext.RecipeViewCommand , RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding Item2.UID}"
+                                Style="{StaticResource ListItemButton}"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding Item2.UID}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   FontSize="24"
+                                   Foreground="{StaticResource TextBrush}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"/>
+                        <TextBlock Grid.Column="4"
+                                   Text="{Binding Item2.Name}"
+                                   FontFamily="{StaticResource DefaultFont}"
+                                   FontSize="24"
+                                   Foreground="{StaticResource TextBrush}"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Margin="30,10"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Item2}" Value="{x:Null}">
+                            <Setter TargetName="Item2Button" Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+
     <!--Scrollbar Thumbs-->
     <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
         <Setter Property="Cursor" Value="Hand"/>
