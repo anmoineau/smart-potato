@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace SmartPotato.MVVM.Model
 {
@@ -12,7 +13,7 @@ namespace SmartPotato.MVVM.Model
     {
         public static string RecipeBookPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"SmartPotato\RecipeBook.json");
 
-        public static List<Recipe> ReadRecipeBook()
+        public static ObservableCollection<Recipe> ReadRecipeBook()
         {
             if (!File.Exists(RecipeBookPath))
             {
@@ -23,7 +24,7 @@ namespace SmartPotato.MVVM.Model
             return DeserializeRecipes(recipes);
         }
 
-        public static void UpdateRecipeBook(List<Recipe> recipes)
+        public static void UpdateRecipeBook(ObservableCollection<Recipe> recipes)
         {
             string updatedRecipes = SerializeRecipes(recipes);
             File.WriteAllText(RecipeBookPath, updatedRecipes);
@@ -34,7 +35,7 @@ namespace SmartPotato.MVVM.Model
             return JsonSerializer.Serialize(recipe, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        private static string SerializeRecipes(List<Recipe> recipes)
+        private static string SerializeRecipes(ObservableCollection<Recipe> recipes)
         {
             return JsonSerializer.Serialize(recipes, new JsonSerializerOptions { WriteIndented = true });
         }
@@ -44,12 +45,12 @@ namespace SmartPotato.MVVM.Model
             return JsonSerializer.Deserialize<Recipe>(jsonString);
         }
 
-        private static List<Recipe> DeserializeRecipes(string jsonString)
+        private static ObservableCollection<Recipe> DeserializeRecipes(string jsonString)
         {
-            List<Recipe> recipes;
+            ObservableCollection<Recipe> recipes;
             try
             {
-                recipes = JsonSerializer.Deserialize<List<Recipe>>(jsonString) ?? new();
+                recipes = JsonSerializer.Deserialize<ObservableCollection<Recipe>>(jsonString) ?? new();
             }
             catch (Exception)
             {

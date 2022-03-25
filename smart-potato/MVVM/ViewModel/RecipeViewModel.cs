@@ -24,7 +24,7 @@ namespace SmartPotato.MVVM.ViewModel
         public RecipeViewModel(uint UID)
         {
             InitializeViewCommands();
-            List<Recipe> recipes = MenuHandler.GetInstance.RecipeBook;
+            List<Recipe> recipes = MenuHandler.GetInstance.RecipeBook.ToList();
             CurrentRecipe = recipes.Find(recipe => recipe.UID == UID) ?? new();
         }
 

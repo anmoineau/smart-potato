@@ -17,7 +17,7 @@ namespace SmartPotato.MVVM.Model
         public static string DoneRecordPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"SmartPotato\RecipesDone.csv");
 
         /**** Methods ****/
-        public static ObservableCollection<Recipe> GetRecipesDone(List<Recipe> recipeBook)
+        public static ObservableCollection<Recipe> GetRecipesDone(ObservableCollection<Recipe> recipeBook)
         {
             ObservableCollection<Recipe> recipes = new();
             try
@@ -28,7 +28,7 @@ namespace SmartPotato.MVVM.Model
                     var records = csv.GetRecords<DoneRecord>();
                     foreach (var record in records)
                     {
-                        recipes.Add(recipeBook.Find(r => r.UID == record.UID)!);
+                        recipes.Add(recipeBook.Where(r => r.UID == record.UID).First());
                     }
                 }
             }
@@ -63,7 +63,7 @@ namespace SmartPotato.MVVM.Model
             public string? Name { get; set; }
         }
 
-        public static ObservableCollection<Meal> GetMenu(List<Recipe> recipeBook)
+        public static ObservableCollection<Meal> GetMenu(ObservableCollection<Recipe> recipeBook)
         {
             ObservableCollection<Meal> menu = new();
             try
@@ -74,7 +74,7 @@ namespace SmartPotato.MVVM.Model
                     var records = csv.GetRecords<MealRecord>();
                     foreach (var record in records)
                     {
-                        Meal meal = new(recipeBook.Find(r => r.UID == record.UID)!, record.IsDone, record.DoneDate);
+                        Meal meal = new(recipeBook.Where(r => r.UID == record.UID).First(), record.IsDone, record.DoneDate);
                         menu.Add(meal);
                     }
                 }

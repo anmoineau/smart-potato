@@ -30,8 +30,8 @@ namespace SmartPotato.MVVM.Model
 
         /**** Properties ****/
 
-        private List<Recipe> recipeBook = new();
-        public List<Recipe> RecipeBook
+        private ObservableCollection<Recipe> recipeBook = new();
+        public ObservableCollection<Recipe> RecipeBook
         {
             get { return recipeBook; }
             set { recipeBook = value; }
