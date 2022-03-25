@@ -6,6 +6,7 @@
         xmlns:view="clr-namespace:SmartPotato.MVVM.View"
         xmlns:viewModel="clr-namespace:SmartPotato.MVVM.ViewModel"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModel:MainViewModel}"
         
         Title="SmartPotato"
         Height="810" Width="1440"

@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/ColorPalettes/ColorsDiscord.xaml"/>
+                <ResourceDictionary Source="/Resources/ColorPalettes/Colors1.xaml"/>
                 <ResourceDictionary Source="/Resources/Fonts.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/Buttons.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/TextBlocks.xaml"/>
@@ -15,9 +15,6 @@
                 <ResourceDictionary Source="/Resources/Themes/CheckBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
-            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
-                <view:MainWindow/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
                 <view:MenuView/>
             </DataTemplate>
