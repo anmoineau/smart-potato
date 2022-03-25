@@ -14,7 +14,7 @@
         ResizeMode="NoResize"
         BorderBrush="{StaticResource HighlightBrush}"
         BorderThickness="1"
-        Background="{StaticResource BackgroundBrush}"
+        Background="{StaticResource WindowBackgroundBrush}"
         MouseDown="Window_MouseDown">
     
     <Grid>

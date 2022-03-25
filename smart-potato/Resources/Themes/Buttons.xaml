@@ -11,7 +11,7 @@
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
-        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource MenuForegroundBrush}"/>
         <Setter Property="Cursor" Value="Hand"/>
 
         <Setter Property="Template">
@@ -39,13 +39,12 @@
            x:Key="MenuButtonTheme">
 
         <Style.Setters>
+            <Setter Property="Height" Value="70"/>
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Regular"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Height" Value="70"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MenuForegroundBrush}"/>
             <Setter Property="Cursor" Value="Hand"/>
             
             <Setter Property="Template">
@@ -67,16 +66,16 @@
 
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="{StaticResource MenuBackgroundBrush}"/>
+                <Setter Property="Background" Value="{StaticResource MenuSelectedBrush}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource HighlightBrush}"/>
             </Trigger>
             <Trigger Property="IsMouseCaptured" Value="True">
-                <Setter Property="Background" Value="{StaticResource MenuButtonBrush}"/>
+                <Setter Property="Background" Value="{StaticResource MenuPressedBrush}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="{StaticResource ButtonDisabledBrush}"/>
+                <Setter Property="Opacity" Value="0.5"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -89,7 +88,7 @@
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontWeight" Value="Light"/>
             <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
-            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}"/>
             <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>

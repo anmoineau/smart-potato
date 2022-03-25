@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/ColorPalettes/Colors1.xaml"/>
+                <ResourceDictionary Source="/Resources/ColorPalettes/ColorsDiscord.xaml"/>
                 <ResourceDictionary Source="/Resources/Fonts.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/Buttons.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/TextBlocks.xaml"/>

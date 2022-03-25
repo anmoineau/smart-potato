@@ -7,7 +7,7 @@
         <Setter Property="MinWidth" Value="45"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"></Setter>
         <Setter Property="Content" Value=""></Setter>
-        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}" />
         <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}"/>
         <Setter Property="Cursor" Value="Hand"></Setter>
