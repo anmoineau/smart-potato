@@ -152,7 +152,7 @@
         </Setter>
         
     </Style>
-
+    
     <!--Scrollbar Thumbs-->
     <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
         <Setter Property="Cursor" Value="Hand"/>

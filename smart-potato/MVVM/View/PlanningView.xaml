@@ -29,11 +29,22 @@
                    Margin="40,0"/>
         
         <!-- List Done -->
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                SnapsToDevicePixels="True"
+                UseLayoutRounding="True"
+                Margin="20,0,20,40"
+                Background="{StaticResource ListBackgroundBrush}"
+                CornerRadius="10"
+                BorderThickness="0">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" BlurRadius="15" Opacity="0.4" RenderingBias="Quality"/>
+            </Border.Effect>
+        </Border>
         <ListView Grid.Column="0"
                   Grid.Row="1"
-                  Margin="40,0,40,40"
-                  Background="Transparent"
-                  BorderThickness="2"
+                  Margin="40,20,40,40"
+                  BorderThickness="0"
                   ItemsSource="{Binding RecipesDone}"
                   ItemContainerStyle="{StaticResource RecipeItem}"/>
 
@@ -46,11 +57,23 @@
                    Margin="40,0"/>
         
         <!-- List Todo -->
+        <Border Grid.Column="0"
+                Grid.Row="1"
+                SnapsToDevicePixels="True"
+                UseLayoutRounding="True"
+                Margin="20,0,20,40"
+                Background="{StaticResource ListBackgroundBrush}"
+                CornerRadius="10"
+                BorderThickness="0">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" BlurRadius="15" Opacity="0.4" RenderingBias="Quality"/>
+            </Border.Effect>
+        </Border>
         <ListView Grid.Column="1"
                   Grid.Row="1"
-                  Margin="40,0,40,40"
+                  Margin="40,20,40,40"
+                  BorderThickness="0"
                   Background="Transparent"
-                  BorderThickness="2"
                   ItemsSource="{Binding RecipesTodo}"
                   ItemContainerStyle="{StaticResource RecipeItem}"/>
 

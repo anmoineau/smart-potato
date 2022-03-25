@@ -10,8 +10,20 @@
              d:DesignHeight="760" d:DesignWidth="1170"
              d:DataContext="{d:DesignInstance Type=viewModel:RecipeBookViewModel}"
              UseLayoutRounding="True">
-    <Grid>
+    <Grid Margin="40">
+        <Border SnapsToDevicePixels="True"
+                UseLayoutRounding="True"
+                Margin="0,0,0,0"
+                Background="{StaticResource ListBackgroundBrush}"
+                CornerRadius="10"
+                BorderThickness="0">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" BlurRadius="15" Opacity="0.4" RenderingBias="Quality"/>
+            </Border.Effect>
+        </Border>
         <ListView Background="Transparent"
+                  Margin="20,20,20,0"
+                  BorderThickness="0"
                   ItemsSource="{Binding RecipeBookFormat}"
                   ItemContainerStyle="{StaticResource RecipeBookItem}"/>
 
