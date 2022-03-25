@@ -33,11 +33,9 @@
 
         <Border Grid.ColumnSpan="2"
                 Grid.RowSpan="3"
-                ClipToBounds="True"
                 BorderThickness="1"
                 BorderBrush="{StaticResource WindowBorderBrush}"
-                Background="{StaticResource WindowBackgroundBrush}"
-                CornerRadius="0,0,0,5"/>
+                Background="{StaticResource WindowBackgroundBrush}"/>
 
         <!-- Title Bar -->
         <Border Grid.ColumnSpan="2"
@@ -84,32 +82,44 @@
                 Background="{StaticResource MenuBackgroundBrush}"
                 BorderBrush="{StaticResource MenuBorderBrush}"
                 BorderThickness="1,0,1,1">
-            <StackPanel>
-                <RadioButton Content="Menu de la semaine"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MenuViewCommand}">
-                </RadioButton>
+            <Grid>
+                <StackPanel>
+                    <RadioButton GroupName="Menu"
+                                 Content="Menu de la semaine"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding MenuViewCommand}">
+                    </RadioButton>
 
-                <RadioButton Content="Planification"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding PlanningViewCommand}">
-                </RadioButton>
+                    <RadioButton GroupName="Menu"
+                                 Content="Planification"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding PlanningViewCommand}">
+                    </RadioButton>
 
-                <RadioButton Content="Livre de recette"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding RecipeBookViewCommand}">
-                </RadioButton>
+                    <RadioButton GroupName="Menu"
+                                 Content="Livre de recette"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding RecipeBookViewCommand}">
+                    </RadioButton>
 
-                <RadioButton Content="Paramètres"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding ParametersViewCommand}">
-                </RadioButton>
-
-                <RadioButton Content="A propos de"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding AboutViewCommand}">
-                </RadioButton>
-            </StackPanel>
+                    <RadioButton GroupName="Menu"
+                                 Content="Paramètres"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding ParametersViewCommand}">
+                    </RadioButton>
+                </StackPanel>
+                <Border BorderThickness="0,1,0,0"
+                        VerticalAlignment="Bottom"
+                        BorderBrush="{StaticResource MenuBorderBrush}">
+                    <RadioButton GroupName="Menu"
+                                 Content="A propos de"
+                                 VerticalAlignment="Bottom"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding AboutViewCommand}">
+                    </RadioButton>
+                </Border>
+            </Grid>
+            
         </Border>
 
         <!-- Content View -->
