@@ -29,7 +29,7 @@
                    Margin="40,0"/>
         
         <!-- List Done -->
-        <Border Grid.Column="1"
+        <Border Grid.Column="0"
                 Grid.Row="1"
                 SnapsToDevicePixels="True"
                 UseLayoutRounding="True"
@@ -45,10 +45,11 @@
                   Grid.Row="1"
                   Margin="40,20,40,40"
                   BorderThickness="0"
+                  Background="Transparent"
                   ItemsSource="{Binding RecipesDone}"
                   ItemContainerStyle="{StaticResource RecipeItem}"/>
 
-        <!-- Title Done-->
+        <!-- Title Todo-->
         <TextBlock Grid.Column="1"
                    Grid.Row="0"
                    Text="Recettes à réaliser"
@@ -57,7 +58,7 @@
                    Margin="40,0"/>
         
         <!-- List Todo -->
-        <Border Grid.Column="0"
+        <Border Grid.Column="1"
                 Grid.Row="1"
                 SnapsToDevicePixels="True"
                 UseLayoutRounding="True"
