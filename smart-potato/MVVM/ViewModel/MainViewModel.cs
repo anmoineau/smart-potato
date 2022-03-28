@@ -57,7 +57,7 @@ namespace SmartPotato.MVVM.ViewModel
             AssemblyVersion = $"{version!.Major}.{version!.Minor}.{version!.Build}";   // Format assembly version.
             InitializeViewModels();
             InitializeViewCommands();
-            CurrentView = AboutVM!;
+            CurrentView = MenuVM!;
         }
 
         /**** Methods ****/
