@@ -7,25 +7,47 @@
              xmlns:view="clr-namespace:SmartPotato.MVVM.View"
              xmlns:viewModel="clr-namespace:SmartPotato.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="760" d:DesignWidth="1170"
+             d:DesignHeight="600" d:DesignWidth="900"
              d:DataContext="{d:DesignInstance Type=viewModel:RecipeViewModel}"
-             UseLayoutRounding="True">
+             UseLayoutRounding="True"
+             SnapsToDevicePixels="True">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0"
-                Content="⨉"
-                HorizontalAlignment="Right"
-                Style="{StaticResource TitleBarButton}"
-                Command="{Binding CloseWindowCommand}"
-                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-
+        <!-- Background -->
+        <Border Grid.RowSpan="2"
+                Background="{StaticResource RecipeBackgroundBrush}"
+                BorderBrush="{StaticResource HighlightBrush}"
+                BorderThickness="1"
+                CornerRadius="7"/>
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{StaticResource RecipeWidgetsBrush}"
+                BorderBrush="{StaticResource RecipeBordersBrush}"
+                BorderThickness="1"
+                Margin="10"
+                CornerRadius="5">
+            <Grid HorizontalAlignment="Right"
+                  Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+                <Button Grid.Row="0"
+                        Content="⨉"
+                        Style="{StaticResource RecipeCloseButton}"
+                        Command="{Binding CloseWindowCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+            </Grid>
+            
+        </Border>
+        
         <TextBlock Grid.Row="0"
-                   Text="{Binding CurrentRecipe.Name}"
+                   Text="{Binding CurrentRecipe.Name, StringFormat=Recette : {0}}"
+                   FontStyle = "Italic"
+                   FontSize="34"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
+                   Margin="40,0"
                    Style="{StaticResource TitleTextBlock}"/>
+        <!-- Body -->
     </Grid>
 </UserControl>

@@ -7,17 +7,15 @@
         mc:Ignorable="d"
         
         Title="Recette"
-        Height="760" Width="1170"
+        Height="600" Width="900"
         UseLayoutRounding="True"
         AllowsTransparency="True"
+        Background="Transparent"
         WindowStyle="None"
         ResizeMode="NoResize"
-        BorderBrush="{StaticResource HighlightBrush}"
-        BorderThickness="1"
-        Background="{StaticResource WindowBackgroundBrush}"
+        BorderThickness="0"
         MouseDown="Window_MouseDown">
     
     <Grid>
-        
     </Grid>
 </Window>

@@ -28,5 +28,11 @@
     <SolidColorBrush x:Key="ListBackgroundBrush">#23272A</SolidColorBrush>
     <SolidColorBrush x:Key="ThumbBrush">#393D41</SolidColorBrush>
     <SolidColorBrush x:Key="ThumbCapturedBrush">#313539</SolidColorBrush>
+    
+    <!-- Recipe View -->
+    <SolidColorBrush x:Key="RecipeBackgroundBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="RecipeWidgetsBrush">#393D41</SolidColorBrush>
+    <SolidColorBrush x:Key="RecipeBordersBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="RecipeForegroundBrush">#FCF4EE</SolidColorBrush>
 
 </ResourceDictionary>
