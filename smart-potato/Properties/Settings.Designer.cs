@@ -25,6 +25,7 @@ namespace SmartPotato.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("04/01/2022 12:00:00")]
         public global::System.DateTime Time {
             get {
                 return ((global::System.DateTime)(this["Time"]));
