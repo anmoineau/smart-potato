@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:SmartPotato.MVVM.ViewModel">
     
     <!-- Meal Item -->
     <Style TargetType="ListViewItem" x:Key="MealItem">
@@ -17,7 +18,26 @@
                                 Grid.ColumnSpan="2"
                                 Command="{Binding Path=DataContext.RecipeViewCommand , RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                 CommandParameter="{Binding Recipe.UID}"
-                                Style="{StaticResource ListItemButton}"/>
+                                Style="{StaticResource ListItemButton}">
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Supprimer temporairement"
+                                              Command="{Binding SoftEraseCommand}"
+                                              CommandParameter="{Binding PlacementTarget.DataContext.Recipe.UID, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                                        <MenuItem.DataContext>
+                                            <viewmodel:MenuViewModel/>
+                                        </MenuItem.DataContext>
+                                    </MenuItem>
+                                    <MenuItem Header="Supprimer définitivement"
+                                              Command="{Binding HardEraseCommand}"
+                                              CommandParameter="{Binding PlacementTarget.DataContext.Recipe.UID, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                                        <MenuItem.DataContext>
+                                            <viewmodel:MenuViewModel/>
+                                        </MenuItem.DataContext>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
                         <CheckBox Grid.Column="0"
                                   IsChecked="{Binding IsDone}"
                                   VerticalAlignment="Center"

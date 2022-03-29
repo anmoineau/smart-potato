@@ -17,9 +17,13 @@ namespace SmartPotato.MVVM.ViewModel
 
         /**** Relay Commands ****/
         public RelayCommand? RenewMenuCommand { get; set; }
+        public RelayCommand? SoftEraseCommand { get; set; }
+        public RelayCommand? HardEraseCommand { get; set; }
 
         /*** CanExecute ***/
         private bool isRenewEnabled = true;
+        private bool isSoftEraseEnabled = true;
+        private bool isHardEraseEnabled = true;
 
         /**** Constructor ****/
         public MenuViewModel()
@@ -35,6 +39,16 @@ namespace SmartPotato.MVVM.ViewModel
             {
                 MenuHandler.GetInstance.RenewMenu();
             }, canExecute => isRenewEnabled);
+
+            SoftEraseCommand = new RelayCommand(o =>
+            {
+                Debug.WriteLine("Soft erase : " + (uint)o);
+            }, canExecute => isSoftEraseEnabled);
+
+            HardEraseCommand = new RelayCommand(o =>
+            {
+                Debug.WriteLine("Hard erase : " + (uint)o);
+            }, canExecute => isHardEraseEnabled);
         }
     }
 }
