@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="/Resources/Themes/TextBlocks.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/Lists.xaml"/>
                 <ResourceDictionary Source="/Resources/Themes/CheckBoxes.xaml"/>
+                <ResourceDictionary Source="/Resources/Themes/ContextMenus.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">

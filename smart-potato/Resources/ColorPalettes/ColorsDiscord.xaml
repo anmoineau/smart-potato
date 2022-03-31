@@ -35,4 +35,8 @@
     <SolidColorBrush x:Key="RecipeBordersBrush">#23272A</SolidColorBrush>
     <SolidColorBrush x:Key="RecipeForegroundBrush">#FCF4EE</SolidColorBrush>
 
+    <!-- Recipe View -->
+    <SolidColorBrush x:Key="ContextMenuBackgroundBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="ContextMenuForegroundBrush">#FCF4EE</SolidColorBrush>
+
 </ResourceDictionary>

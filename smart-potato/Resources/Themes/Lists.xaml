@@ -21,16 +21,26 @@
                                 Style="{StaticResource ListItemButton}">
                             <Button.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Supprimer temporairement"
+                                    <MenuItem BorderThickness="0"
                                               Command="{Binding SoftEraseCommand}"
                                               CommandParameter="{Binding PlacementTarget.DataContext.Recipe.UID, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                                        <MenuItem.Header>
+                                            <TextBlock Text="Repousser"
+                                                       Margin="0,10"
+                                                       Style="{StaticResource DefautlTextBlock}"/>
+                                        </MenuItem.Header>
                                         <MenuItem.DataContext>
                                             <viewmodel:MenuViewModel/>
                                         </MenuItem.DataContext>
                                     </MenuItem>
-                                    <MenuItem Header="Supprimer définitivement"
+                                    <MenuItem BorderThickness="0"
                                               Command="{Binding HardEraseCommand}"
                                               CommandParameter="{Binding PlacementTarget.DataContext.Recipe.UID, RelativeSource={RelativeSource AncestorType=ContextMenu}}">
+                                        <MenuItem.Header>
+                                            <TextBlock Text="Annuler"
+                                                       Margin="0,10"
+                                                       Style="{StaticResource DefautlTextBlock}"/>
+                                        </MenuItem.Header>
                                         <MenuItem.DataContext>
                                             <viewmodel:MenuViewModel/>
                                         </MenuItem.DataContext>
