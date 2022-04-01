@@ -169,6 +169,25 @@ namespace SmartPotato.MVVM.Model
             ComputeMenu();
         }
 
+        public void MoveMealToDone(uint UID)
+        {
+            var mealToMove = Menu.Where(meal => meal.Recipe.UID == UID).First();
+            Menu.Remove(mealToMove);
+            if (mealToMove.IsDone)
+            {
+                mealToMove.ArchiveMeal();
+                RecipeBookParser.UpdateRecipeBook(RecipeBook);
+            }
+            RecipesDone.Add(mealToMove.Recipe);
+        }
+
+        public void MoveMealToToDo(uint UID)
+        {
+            var mealToMove = Menu.Where(meal => meal.Recipe.UID == UID).First();
+            Menu.Remove(mealToMove);
+            RecipesTodo.Add(mealToMove.Recipe);
+        }
+
         public string PrintRecipeBook()
         {
             string format = "";

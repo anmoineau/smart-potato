@@ -42,12 +42,12 @@ namespace SmartPotato.MVVM.ViewModel
 
             SoftEraseCommand = new RelayCommand(o =>
             {
-                Debug.WriteLine("Soft erase : " + (uint)o);
+                MenuHandler.GetInstance.MoveMealToToDo((uint)o);
             }, canExecute => isSoftEraseEnabled);
 
             HardEraseCommand = new RelayCommand(o =>
             {
-                Debug.WriteLine("Hard erase : " + (uint)o);
+                MenuHandler.GetInstance.MoveMealToDone((uint)o);
             }, canExecute => isHardEraseEnabled);
         }
     }
