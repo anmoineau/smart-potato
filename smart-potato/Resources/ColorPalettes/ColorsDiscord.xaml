@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Window -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush">#393D41</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowBorderBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowForegroundBrush">#FCF4EE</SolidColorBrush>
+    <SolidColorBrush x:Key="HighlightBrush">#7289DA</SolidColorBrush>
+
+    <!-- Title Bar -->
+    <SolidColorBrush x:Key="TitleBackgroundBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="TitleForegroundBrush">#FCF4EE</SolidColorBrush>
+    
+    <!-- Menu Panel -->
+    <SolidColorBrush x:Key="MenuBackgroundBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuBorderBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuSelectedBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuPressedBrush">#393D41</SolidColorBrush>
+    <SolidColorBrush x:Key="MenuForegroundBrush">#FCF4EE</SolidColorBrush>
+    
+    <!-- Buttons -->
+    <SolidColorBrush x:Key="ButtonBackgroundBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonForegroundBrush">#FCF4EE</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonBorderBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonPressedBrush">#23272A</SolidColorBrush>
+        
+    <!-- Lists -->
+    <SolidColorBrush x:Key="ListBackgroundBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="ThumbBrush">#393D41</SolidColorBrush>
+    <SolidColorBrush x:Key="ThumbCapturedBrush">#313539</SolidColorBrush>
+    
+    <!-- Recipe View -->
+    <SolidColorBrush x:Key="RecipeBackgroundBrush">#313539</SolidColorBrush>
+    <SolidColorBrush x:Key="RecipeWidgetsBrush">#393D41</SolidColorBrush>
+    <SolidColorBrush x:Key="RecipeBordersBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="RecipeForegroundBrush">#FCF4EE</SolidColorBrush>
+
+    <!-- Recipe View -->
+    <SolidColorBrush x:Key="ContextMenuBackgroundBrush">#23272A</SolidColorBrush>
+    <SolidColorBrush x:Key="ContextMenuForegroundBrush">#FCF4EE</SolidColorBrush>
+
+</ResourceDictionary>

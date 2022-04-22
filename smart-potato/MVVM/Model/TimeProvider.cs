@@ -16,5 +16,10 @@ namespace SmartPotato.MVVM.Model
                 Properties.Settings.Default.Save();
             }
         }
+
+        public static void AddDays(int number)
+        {
+            CurrentTime = CurrentTime.AddDays(number);
+        }
     }
 }

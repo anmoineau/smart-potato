@@ -10,9 +10,94 @@
              d:DesignHeight="760" d:DesignWidth="1170"
              d:DataContext="{d:DesignInstance Type=viewModel:ParametersViewModel}"
              UseLayoutRounding="True">
-    <Grid>
-        <TextBlock Text="ParametersView"
-                   FontFamily="{StaticResource DefaultFont}"
-                   FontSize="50"/>
+    <Grid Margin="20,20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Left side -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <!-- Date -->
+            <TextBlock Grid.Row="0"
+                       Text="Gestion de la date"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TitleTextBlock}"/>
+            <TextBlock Grid.Row="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Text="{Binding CurrentTime}"
+                       Style="{StaticResource TitleTextBlock}"
+                       FontSize="30"/>
+            <!-- Add/Remove 1 day-->
+            <Grid Grid.Row="2"
+                  Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Content="- 1 Jour"
+                        Command="{Binding AddDaysCommand}"
+                        CommandParameter="-1"
+                        Style="{StaticResource GenericViewButton}"/>
+                <Button Grid.Column="2"
+                        Content="+ 1 Jour"
+                        Command="{Binding AddDaysCommand}"
+                        CommandParameter="+1"
+                        Style="{StaticResource GenericViewButton}"/>
+            </Grid>
+            <!-- Add/Remove 7 day-->
+            <Grid Grid.Row="3"
+                  Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Content="- 7 Jours"
+                        Command="{Binding AddDaysCommand}"
+                        CommandParameter="-7"
+                        Style="{StaticResource GenericViewButton}"/>
+                <Button Grid.Column="2"
+                        Content="+ 7 Jours"
+                        Command="{Binding AddDaysCommand}"
+                        CommandParameter="+7"
+                        Style="{StaticResource GenericViewButton}"/>
+            </Grid>
+
+            <Separator  Grid.Row="4"
+                        Background="Gray"
+                        Margin="10,0"/>
+            <!-- App Data -->
+            <TextBlock Grid.Row="5"
+                       Text="Données"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TitleTextBlock}"/>
+            <Button Grid.Row="6"
+                    Content="Ouvrir"
+                    Margin="80,20"
+                    Command="{Binding OpenAppDataCommand}"
+                    Style="{StaticResource GenericViewButton}"/>
+
+        </Grid>
+        
+        <!-- Separator -->
+        <Separator Grid.Column="1"
+                   Width="1"
+                   Background="Gray"
+                   Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
+                   Margin="0,40"/>
     </Grid>
 </UserControl>

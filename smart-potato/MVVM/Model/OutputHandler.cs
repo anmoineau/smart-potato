@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace SmartPotato.MVVM.Model
         public static string DoneRecordPath { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"SmartPotato\RecipesDone.csv");
 
         /**** Methods ****/
-        public static List<Recipe> GetRecipesDone(List<Recipe> recipeBook)
+        public static ObservableCollection<Recipe> GetRecipesDone(ObservableCollection<Recipe> recipeBook)
         {
-            List<Recipe> recipes = new();
+            ObservableCollection<Recipe> recipes = new();
             try
             {
                 using (var reader = new StreamReader(DoneRecordPath))
@@ -27,7 +28,7 @@ namespace SmartPotato.MVVM.Model
                     var records = csv.GetRecords<DoneRecord>();
                     foreach (var record in records)
                     {
-                        recipes.Add(recipeBook.Find(r => r.UID == record.UID)!);
+                        recipes.Add(recipeBook.Where(r => r.UID == record.UID).First());
                     }
                 }
             }
@@ -37,7 +38,7 @@ namespace SmartPotato.MVVM.Model
             return recipes;
         }
 
-        public static void ExportRecipesDone(List<Recipe> recipes)
+        public static void ExportRecipesDone(ObservableCollection<Recipe> recipes)
         {
             List<DoneRecord> DoneRecords = new();
             foreach (var recipe in recipes)
@@ -62,9 +63,9 @@ namespace SmartPotato.MVVM.Model
             public string? Name { get; set; }
         }
 
-        public static List<Meal> GetMenu(List<Recipe> recipeBook)
+        public static ObservableCollection<Meal> GetMenu(ObservableCollection<Recipe> recipeBook)
         {
-            List<Meal> menu = new();
+            ObservableCollection<Meal> menu = new();
             try
             {
                 using (var reader = new StreamReader(MenuRecordPath))
@@ -73,11 +74,7 @@ namespace SmartPotato.MVVM.Model
                     var records = csv.GetRecords<MealRecord>();
                     foreach (var record in records)
                     {
-                        Meal meal = new(recipeBook.Find(r => r.UID == record.UID)!)
-                        {
-                            IsDone = record.IsDone,
-                            DoneDate = record.DoneDate
-                        };
+                        Meal meal = new(recipeBook.Where(r => r.UID == record.UID).First(), record.IsDone, record.DoneDate);
                         menu.Add(meal);
                     }
                 }
@@ -89,7 +86,7 @@ namespace SmartPotato.MVVM.Model
             return menu;
         }
 
-        public static void ExportMenu(List<Meal> menu)
+        public static void ExportMenu(ObservableCollection<Meal> menu)
         {
             List<MealRecord> MenuRecord = new();
             foreach (var meal in menu)

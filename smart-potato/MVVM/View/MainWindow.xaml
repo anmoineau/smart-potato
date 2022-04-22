@@ -6,7 +6,9 @@
         xmlns:view="clr-namespace:SmartPotato.MVVM.View"
         xmlns:viewModel="clr-namespace:SmartPotato.MVVM.ViewModel"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModel:MainViewModel}"
         
+        Title="SmartPotato"
         Height="810" Width="1440"
         MinHeight="675" MinWidth="1200"
         UseLayoutRounding="True"
@@ -31,19 +33,19 @@
 
         <Border Grid.ColumnSpan="2"
                 Grid.RowSpan="3"
-                ClipToBounds="True"
-                Background="{StaticResource BackgroundBrush}"
-                CornerRadius="0,0,0,5"/>
+                BorderThickness="1"
+                BorderBrush="{StaticResource WindowBorderBrush}"
+                Background="{StaticResource WindowBackgroundBrush}"/>
 
         <!-- Title Bar -->
         <Border Grid.ColumnSpan="2"
-                Background="{StaticResource TitleBarBrush}"
+                Background="{StaticResource TitleBackgroundBrush}"
                 MouseDown="Border_MouseDown">
 
             <Grid HorizontalAlignment="Stretch">
 
                 <TextBlock Text="{Binding AssemblyVersion, StringFormat=SmartPotato v{0}}"
-                           Foreground="{StaticResource TextBrush}"
+                           Foreground="{StaticResource MenuForegroundBrush}"
                            FontFamily="{StaticResource DefaultFont}"
                            FontSize="17"
                            FontWeight="SemiBold"
@@ -77,34 +79,47 @@
 
         <!-- Menu Panel-->
         <Border Grid.Row="1"
-                BorderBrush="{StaticResource MenuBackgroundBrush}"
-                BorderThickness="0,0,1,0">
-            <StackPanel>
-                <RadioButton Content="Menu de la semaine"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MenuViewCommand}">
-                </RadioButton>
+                Background="{StaticResource MenuBackgroundBrush}"
+                BorderBrush="{StaticResource MenuBorderBrush}"
+                BorderThickness="1,0,1,1">
+            <Grid>
+                <StackPanel>
+                    <RadioButton GroupName="Menu"
+                                 Content="Menu de la semaine"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding MenuViewCommand}">
+                    </RadioButton>
 
-                <RadioButton Content="Planification"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding PlanningViewCommand}">
-                </RadioButton>
+                    <RadioButton GroupName="Menu"
+                                 Content="Planification"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding PlanningViewCommand}">
+                    </RadioButton>
 
-                <RadioButton Content="Livre de recette"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding RecipeBookViewCommand}">
-                </RadioButton>
+                    <RadioButton GroupName="Menu"
+                                 Content="Livre de recette"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding RecipeBookViewCommand}">
+                    </RadioButton>
 
-                <RadioButton Content="Paramètres"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding ParametersViewCommand}">
-                </RadioButton>
-
-                <RadioButton Content="A propos de"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding AboutViewCommand}">
-                </RadioButton>
-            </StackPanel>
+                    <RadioButton GroupName="Menu"
+                                 Content="Paramètres"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding ParametersViewCommand}">
+                    </RadioButton>
+                </StackPanel>
+                <Border BorderThickness="0,1,0,0"
+                        VerticalAlignment="Bottom"
+                        BorderBrush="{StaticResource MenuBorderBrush}">
+                    <RadioButton GroupName="Menu"
+                                 Content="A propos de"
+                                 VerticalAlignment="Bottom"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding AboutViewCommand}">
+                    </RadioButton>
+                </Border>
+            </Grid>
+            
         </Border>
 
         <!-- Content View -->

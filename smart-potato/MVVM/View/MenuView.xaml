@@ -11,8 +11,58 @@
              d:DataContext="{d:DesignInstance Type=viewModel:MenuViewModel}"
              UseLayoutRounding="True">
     <Grid>
-        <TextBlock Text="MenuView"
-                   FontFamily="{StaticResource DefaultFont}"
-                   FontSize="50"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Title -->
+        <TextBlock Text="Menu de la semaine"
+                   Style="{StaticResource TitleTextBlock}"
+                   VerticalAlignment="Center"
+                   Margin="40,0"/>
+        <!-- List -->
+        <Border Grid.Column="0"
+                Grid.Row="1"
+                SnapsToDevicePixels="True"
+                UseLayoutRounding="True"
+                Margin="20,0,20,40"
+                Background="{StaticResource ListBackgroundBrush}"
+                CornerRadius="10"
+                BorderThickness="0">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Direction="290" ShadowDepth="3" BlurRadius="15" Opacity="0.4" RenderingBias="Quality"/>
+            </Border.Effect>
+        </Border>
+        <ListView Grid.Column="0"
+                  Grid.Row="1"
+                  Margin="40,20,40,40"
+                  Background="Transparent"
+                  BorderThickness="0"
+                  ItemsSource="{Binding Menu}"
+                  ItemContainerStyle="{StaticResource MealItem}"/>
+        <!-- Buttons -->
+        <Button Content="Editer"
+                Grid.Column="1"
+                Grid.Row="1"
+                Style="{StaticResource GenericViewButton}"
+                MinHeight="90"
+                MaxWidth="400"
+                VerticalAlignment="Top"
+                Margin="20,0"/>
+        <Button Content="Renouveler"
+                Grid.Column="1"
+                Grid.Row="1"
+                MinHeight="90"
+                MaxWidth="400"
+                VerticalAlignment="Bottom"
+                Margin="20,40"
+                Style="{StaticResource GenericViewButton}"
+                Command="{Binding RenewMenuCommand}"/>
+
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 using SmartPotato.Core;
 using SmartPotato.MVVM.Model;
+using SmartPotato.MVVM.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,15 +31,14 @@ namespace SmartPotato.MVVM.ViewModel
         public RelayCommand? MenuViewCommand { get; set; }
         public RelayCommand? PlanningViewCommand { get; set; }
         public RelayCommand? RecipeBookViewCommand { get; set; }
-        public RelayCommand? RecipeViewCommand { get; set; }
         public RelayCommand? ParametersViewCommand { get; set; }
         public RelayCommand? AboutViewCommand { get; set; }
+        public RelayCommand? RecipeViewCommand { get; set; }
 
         /*** ViewModels ***/
         public MenuViewModel? MenuVM { get; set; }
         public PlanningViewModel? PlanningVM { get; set; }
         public RecipeBookViewModel? RecipeBookVM { get; set; }
-        public RecipeViewModel? RecipeVM { get; set; }
         public ParametersViewModel? ParametersVM { get; set; }
         public AboutViewModel? AboutVM { get; set; }
 
@@ -46,9 +46,9 @@ namespace SmartPotato.MVVM.ViewModel
         private bool isMenuEnabled = true;
         private bool isPlanningEnabled = true;
         private bool isRecipeBookEnabled = true;
-        private bool isRecipeEnabled = true;
         private bool isParametersEnabled = true;
         private bool isAboutEnabled = true;
+        private bool isRecipeEnabled = true;
 
         /**** Constructor ****/
         public MainViewModel()
@@ -57,7 +57,7 @@ namespace SmartPotato.MVVM.ViewModel
             AssemblyVersion = $"{version!.Major}.{version!.Minor}.{version!.Build}";   // Format assembly version.
             InitializeViewModels();
             InitializeViewCommands();
-            CurrentView = RecipeVM!;
+            CurrentView = MenuVM!;
         }
 
         /**** Methods ****/
@@ -66,7 +66,6 @@ namespace SmartPotato.MVVM.ViewModel
             MenuVM = new MenuViewModel();
             PlanningVM = new PlanningViewModel();
             RecipeBookVM = new RecipeBookViewModel();
-            RecipeVM = new RecipeViewModel();
             ParametersVM = new ParametersViewModel();
             AboutVM = new AboutViewModel();
         }
@@ -88,11 +87,6 @@ namespace SmartPotato.MVVM.ViewModel
                 CurrentView = RecipeBookVM;
             }, canExecute => isRecipeBookEnabled);
 
-            RecipeViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = RecipeVM;
-            }, canExecute => isRecipeEnabled);
-
             ParametersViewCommand= new RelayCommand(o =>
             {
                 CurrentView = ParametersVM;
@@ -102,6 +96,14 @@ namespace SmartPotato.MVVM.ViewModel
             {
                 CurrentView = AboutVM;
             }, canExecute => isAboutEnabled);
+
+            RecipeViewCommand = new RelayCommand(o =>
+            {
+                var win = new PopUpWindow();
+                RecipeViewModel recipeVM = new((uint)o);
+                win.Content = recipeVM;
+                win.Show();
+            }, canExecute => isRecipeEnabled);
         }
     }
 }
