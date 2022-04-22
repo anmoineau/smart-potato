@@ -134,7 +134,6 @@ namespace SmartPotato.MVVM.Model
             if (Menu.Count < MENU_SIZE)
             {
                 RecipesDone.Clear();
-                OutputHandler.ExportRecipesDone(RecipesDone);
                 ComputeRecipesTodo();
                 FillMenu();
             }
@@ -165,7 +164,6 @@ namespace SmartPotato.MVVM.Model
                     Menu.RemoveAt(i);
                 }
             }
-            OutputHandler.ExportRecipesDone(RecipesDone);
             RecipeBookParser.UpdateRecipeBook(RecipeBook);
             ComputeRecipesTodo();
             ComputeMenu();
